@@ -1,0 +1,2 @@
+Este es un párrafo de prueba para verificar cómo funciona la alineación de texto en Java. 
+Podemos tener varias líneas y palabras de diferente longitud para probar la izquierda, derecha, centrado y justificado.
