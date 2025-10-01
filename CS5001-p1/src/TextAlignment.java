@@ -1,6 +1,9 @@
+import java.util.Set;
+
 public class TextAlignment {
     public static void main(String[] args) {
-        if (args.length < 3){
+        int MIN_ARGS = 3;
+        if (args.length < MIN_ARGS) {
             System.out.println("usage: java TextAlignment <filename> <alignmentType> <lineLength>");
             return;
         }
@@ -8,7 +11,24 @@ public class TextAlignment {
         // If it doesnt exist --> "File Not Found: <path>"
         String filename = args[0];
         String alignmentType = args[1].toLowerCase();
-        int lineLength = Integer.parseInt(args[2]);
+        int lineLength;
+        try {
+            lineLength = Integer.parseInt(args[2]);
+            if (lineLength <= 0) {
+                System.out.println("usage: java TextAlignment <filename> <alignmentType> <lineLength>");
+                return;
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("usage: java TextAlignment <filename> <alignmentType> <lineLength>");
+            return;
+        }
+
+        Set<String> validAlignments = Set.of("left", "right", "center", "justify");
+
+        if (!validAlignments.contains(alignmentType.toLowerCase())) {
+            System.out.println("usage: java TextAlignment <filename> <alignmentType> <lineLength>");
+            return;
+        }
         
         String[] paragraphs = FileUtil.readFile(filename); // Incorporated a File Not Found!
         for (String paragraph : paragraphs) {
@@ -26,9 +46,9 @@ public class TextAlignment {
             case "center":
                 return centerAlign(paragraph, lineLenght);
             case "justify":
-                return justify(paragraph, lineLenght);
+                return justifyAlign(paragraph, lineLenght);
             default:
-                System.out.println("Tipo de alineación inválido. Use left, right, center o justify.");
+                System.out.println("Alignment Type invalid. Use left, right, center or justify.");
                 return paragraph;
         }
     }
@@ -72,7 +92,8 @@ public class TextAlignment {
         for (String word : words) {
             if (line.length() + word.length() + 1 > lineLength) {
                 // calcular espacios al inicio para alinear a la derecha
-                int spacesToAdd = lineLength - line.length();
+                // int spacesToAdd = lineLength - line.length();
+                int spacesToAdd = Math.max(0, lineLength - line.length());
                 String padding = " ".repeat(spacesToAdd);
                 alignedText.append(padding).append(line.toString().trim()).append("\n");
                 line = new StringBuilder();
@@ -95,28 +116,27 @@ public class TextAlignment {
      * int leftSpaces = (lineLength - line.length()) / 2;
      */
     private static String centerAlign(String paragraph, int lineLength) {
-    String[] words = paragraph.split("\\s+");
-    StringBuilder alignedText = new StringBuilder();
-    StringBuilder line = new StringBuilder();
+        StringBuilder result = new StringBuilder();
+        String[] words = paragraph.split("\\s+");
+        StringBuilder line = new StringBuilder();
 
-    for (String word : words) {
-        if (line.length() + word.length() + 1 > lineLength) {
-            int totalSpaces = lineLength - line.toString().trim().length();
-            int leftSpaces = totalSpaces / 2;
-            alignedText.append(" ".repeat(leftSpaces)).append(line.toString().trim()).append("\n");
-            line = new StringBuilder();
+        for (String word : words) {
+            if (line.length() + word.length() + 1 > lineLength) {
+                // centrar la línea actual
+                int padding = (lineLength - line.length()) / 2;
+                result.append(" ".repeat(Math.max(0, padding))).append(line).append("\n");
+                line = new StringBuilder(word);
+            } else {
+                if (line.length() > 0) line.append(" ");
+                line.append(word);
+            }
         }
-        line.append(word).append(" ");
-    }
 
-    if (line.length() > 0) {
-        int totalSpaces = lineLength - line.toString().trim().length();
-        int leftSpaces = totalSpaces / 2;
-        alignedText.append(" ".repeat(leftSpaces)).append(line.toString().trim());
+        // última línea (no justificar)
+        int padding = (lineLength - line.length()) / 2;
+        result.append(" ".repeat(Math.max(0, padding))).append(line);
+        return result.toString();
     }
-
-    return alignedText.toString();
-}
 
     /**
      * Se calcula el número de espacios necesarios para que la línea alcance lineLength.
@@ -124,41 +144,53 @@ public class TextAlignment {
      * Si hay espacios restantes (por división entera), se reparten uno a uno desde la izquierda hasta llenar la línea.
      * Esto hace que la línea se vea alineada tanto a la izquierda como a la derecha.
      */
-    private static String justify(String paragraph, int lineLength) {
+    private static String justifyAlign(String paragraph, int lineLength) {
+        StringBuilder result = new StringBuilder();
         String[] words = paragraph.split("\\s+");
-        StringBuilder alignedText = new StringBuilder();
         StringBuilder line = new StringBuilder();
+        int lineWordsCount = 0;
+        int lineCharsCount = 0;
 
         for (String word : words) {
-            if (line.length() + word.length() + 1 > lineLength) {
-                String[] lineWords = line.toString().trim().split("\\s+");
-                int totalSpaces = lineLength - line.toString().trim().length();
+            if (lineCharsCount + word.length() + lineWordsCount > lineLength) {
+                // justificar la línea actual
+                String[] lineWords = line.toString().split(" ");
+                int totalSpaces = lineLength - (lineCharsCount);
                 int gaps = lineWords.length - 1;
 
                 if (gaps > 0) {
-                    int spacesPerGap = totalSpaces / gaps;
+                    int evenSpaces = totalSpaces / gaps;
                     int extraSpaces = totalSpaces % gaps;
 
                     for (int i = 0; i < lineWords.length; i++) {
-                        alignedText.append(lineWords[i]);
+                        result.append(lineWords[i]);
                         if (i < gaps) {
-                            alignedText.append(" ".repeat(spacesPerGap + (i < extraSpaces ? 1 : 0)));
+                            result.append(" ".repeat(evenSpaces + 1)); // un espacio normal + extras
+                            if (extraSpaces-- > 0) {
+                                result.append(" ");
+                            }
                         }
                     }
                 } else {
-                    alignedText.append(lineWords[0]);
+                    // solo una palabra en la línea → alineada a la izquierda
+                    result.append(lineWords[0]);
                 }
+                result.append("\n");
 
-                alignedText.append("\n");
-                line = new StringBuilder();
+                // reiniciar con la palabra nueva
+                line = new StringBuilder(word);
+                lineWordsCount = 1;
+                lineCharsCount = word.length();
+            } else {
+                if (line.length() > 0) line.append(" ");
+                line.append(word);
+                lineWordsCount++;
+                lineCharsCount += word.length();
             }
-            line.append(word).append(" ");
         }
-
         if (line.length() > 0) {
-            alignedText.append(line.toString().trim());
+            result.append(line.toString());
         }
-
-        return alignedText.toString();
+        return result.toString();
     }
 }
