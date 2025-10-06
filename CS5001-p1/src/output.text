@@ -1,0 +1,3178 @@
+Testing CS5001 Practical 1
+- Looking for submission in a directory called 'src': Already in it!
+* BUILD TEST - build : pass
+* INFO - public/TestQ_CheckStyle/infoCheckStyle : pass
+--- submission output ---
+Starting audit...
+[WARN] /cs/home/ppdm1/OOP/OOP/CS5001-p1/src/./Test.java:1:15: Using the '.*' form of import should be avoided - java.io.*. [AvoidStarImport]
+[WARN] /cs/home/ppdm1/OOP/OOP/CS5001-p1/src/./TextAlignment.java:5:23: '3' is a magic number. [MagicNumber]
+[WARN] /cs/home/ppdm1/OOP/OOP/CS5001-p1/src/./TextAlignment.java:40: Line has trailing spaces or tabs. [RegexpSingleline]
+[WARN] /cs/home/ppdm1/OOP/OOP/CS5001-p1/src/./TextAlignment.java:127:17: 'for' construct must use '{}'s. [NeedBraces]
+[WARN] /cs/home/ppdm1/OOP/OOP/CS5001-p1/src/./TextAlignment.java:132:13: 'if' construct must use '{}'s. [NeedBraces]
+[WARN] /cs/home/ppdm1/OOP/OOP/CS5001-p1/src/./TextAlignment.java:139:13: 'for' construct must use '{}'s. [NeedBraces]
+Audit done.
+---
+
+* COMPARISON TEST - public/centre/Test11_pratchett_80_C/progRun-expected.out : fail
+--- expected output ---
+Many things went on at the Unseen University and, regrettably teaching had to be
+  one of them. The faculty had long ago confronted this fact and had perfected
+ various devices for avoiding it. But this was perfectly all right because to be
+                           fair, so had the students.
+The system had worked quite well and, as happens in such cases, had taken on the
+status of a tradition. Lectures clearly took place, because they were down there
+    on the timetable in black and white. The fact that no-one attended was an
+   irrelevant detail. It was occasionally maintained that this meant that the
+  lectures did not in fact happen at all, but no-one ever attended them to find
+ out if this was true. Anyway, it was argued (by the Reader in Woolly Thinking,
+    which is like Fuzzy Logic, only less so) that lectures had taken place in
+                      essence, so that was all right, too.
+ And, therefore education at the University mostly worked by the age-old method
+  of putting a lot of young people in the vicinity of a lot of books and hoping
+ that something would pass from one to the other, while the actual young people
+ put themselves in the vicinity of inns and taverns for exactly the same reason.
+--- submission output ---
+Many things went on at the Unseen University and, regrettably teaching had to be
+  one of them. The faculty had long ago confronted this fact and had perfected
+various devices for avoiding it. But this was perfectly all right because to be
+                           fair, so had the students.
+The system had worked quite well and, as happens in such cases, had taken on the
+status of a tradition. Lectures clearly took place, because they were down there
+   on the timetable in black and white. The fact that no-one attended was an
+   irrelevant detail. It was occasionally maintained that this meant that the
+ lectures did not in fact happen at all, but no-one ever attended them to find
+ out if this was true. Anyway, it was argued (by the Reader in Woolly Thinking,
+   which is like Fuzzy Logic, only less so) that lectures had taken place in
+                      essence, so that was all right, too.
+ And, therefore education at the University mostly worked by the age-old method
+ of putting a lot of young people in the vicinity of a lot of books and hoping
+ that something would pass from one to the other, while the actual young people
+put themselves in the vicinity of inns and taverns for exactly the same reason.
+---
+
+* COMPARISON TEST - public/centre/Test12_poppins_80_C/progRun-expected.out : fail
+--- expected output ---
+   It's... supercalifragilisticexpialidocious! Even though the sound of it is
+    something quite atrocious. If you say it loud enough you'll always sound
+                 precocious. Supercalifragilisticexpialidocious!
+--- submission output ---
+   It's... supercalifragilisticexpialidocious! Even though the sound of it is
+    something quite atrocious. If you say it loud enough you'll always sound
+                precocious. Supercalifragilisticexpialidocious!
+---
+
+* COMPARISON TEST - public/centre/Test13_pratchett_78_C/progRun-expected.out : fail
+--- expected output ---
+ Many things went on at the Unseen University and, regrettably teaching had to
+     be one of them. The faculty had long ago confronted this fact and had
+  perfected various devices for avoiding it. But this was perfectly all right
+                   because to be fair, so had the students.
+ The system had worked quite well and, as happens in such cases, had taken on
+the status of a tradition. Lectures clearly took place, because they were down
+ there on the timetable in black and white. The fact that no-one attended was
+ an irrelevant detail. It was occasionally maintained that this meant that the
+ lectures did not in fact happen at all, but no-one ever attended them to find
+out if this was true. Anyway, it was argued (by the Reader in Woolly Thinking,
+   which is like Fuzzy Logic, only less so) that lectures had taken place in
+                     essence, so that was all right, too.
+And, therefore education at the University mostly worked by the age-old method
+ of putting a lot of young people in the vicinity of a lot of books and hoping
+that something would pass from one to the other, while the actual young people
+    put themselves in the vicinity of inns and taverns for exactly the same
+                                    reason.
+--- submission output ---
+Many things went on at the Unseen University and, regrettably teaching had to
+    be one of them. The faculty had long ago confronted this fact and had
+ perfected various devices for avoiding it. But this was perfectly all right
+                   because to be fair, so had the students.
+ The system had worked quite well and, as happens in such cases, had taken on
+the status of a tradition. Lectures clearly took place, because they were down
+ there on the timetable in black and white. The fact that no-one attended was
+an irrelevant detail. It was occasionally maintained that this meant that the
+lectures did not in fact happen at all, but no-one ever attended them to find
+out if this was true. Anyway, it was argued (by the Reader in Woolly Thinking,
+  which is like Fuzzy Logic, only less so) that lectures had taken place in
+                     essence, so that was all right, too.
+And, therefore education at the University mostly worked by the age-old method
+of putting a lot of young people in the vicinity of a lot of books and hoping
+that something would pass from one to the other, while the actual young people
+   put themselves in the vicinity of inns and taverns for exactly the same
+                                   reason.
+---
+
+* COMPARISON TEST - public/centre/Test14_poppins_78_C/progRun-expected.out : fail
+--- expected output ---
+  It's... supercalifragilisticexpialidocious! Even though the sound of it is
+   something quite atrocious. If you say it loud enough you'll always sound
+                precocious. Supercalifragilisticexpialidocious!
+--- submission output ---
+  It's... supercalifragilisticexpialidocious! Even though the sound of it is
+   something quite atrocious. If you say it loud enough you'll always sound
+               precocious. Supercalifragilisticexpialidocious!
+---
+
+* COMPARISON TEST - public/centre/Test15_pratchett_10_C/progRun-expected.out : fail
+--- expected output ---
+   Many
+  things
+went on at
+the Unseen
+University
+   and,
+regrettably
+ teaching
+ had to be
+  one of
+ them. The
+  faculty
+ had long
+    ago
+confronted
+ this fact
+  and had
+ perfected
+  various
+  devices
+    for
+ avoiding
+  it. But
+ this was
+ perfectly
+ all right
+because to
+ be fair,
+so had the
+ students.
+The system
+had worked
+quite well
+  and, as
+happens in
+   such
+cases, had
+ taken on
+the status
+   of a
+tradition.
+ Lectures
+  clearly
+   took
+  place,
+  because
+ they were
+down there
+  on the
+ timetable
+ in black
+and white.
+ The fact
+   that
+  no-one
+ attended
+  was an
+irrelevant
+detail. It
+    was
+occasionally
+maintained
+ that this
+meant that
+    the
+ lectures
+did not in
+   fact
+ happen at
+ all, but
+  no-one
+   ever
+ attended
+  them to
+ find out
+  if this
+ was true.
+Anyway, it
+was argued
+  (by the
+ Reader in
+  Woolly
+ Thinking,
+ which is
+like Fuzzy
+  Logic,
+ only less
+ so) that
+ lectures
+ had taken
+ place in
+ essence,
+  so that
+  was all
+  right,
+   too.
+   And,
+ therefore
+ education
+  at the
+University
+  mostly
+ worked by
+    the
+  age-old
+ method of
+ putting a
+  lot of
+   young
+ people in
+    the
+ vicinity
+ of a lot
+ of books
+and hoping
+   that
+ something
+would pass
+ from one
+  to the
+  other,
+ while the
+  actual
+   young
+people put
+themselves
+  in the
+ vicinity
+  of inns
+    and
+  taverns
+    for
+  exactly
+ the same
+  reason.
+--- submission output ---
+   Many
+  things
+went on at
+the Unseen
+University
+   and,
+regrettably
+ teaching
+had to be
+  one of
+them. The
+ faculty
+ had long
+   ago
+confronted
+this fact
+ and had
+perfected
+ various
+ devices
+   for
+ avoiding
+ it. But
+ this was
+perfectly
+all right
+because to
+ be fair,
+so had the
+students.
+The system
+had worked
+quite well
+ and, as
+happens in
+   such
+cases, had
+ taken on
+the status
+   of a
+tradition.
+ Lectures
+ clearly
+   took
+  place,
+ because
+they were
+down there
+  on the
+timetable
+ in black
+and white.
+ The fact
+   that
+  no-one
+ attended
+  was an
+irrelevant
+detail. It
+   was
+occasionally
+maintained
+that this
+meant that
+   the
+ lectures
+did not in
+   fact
+happen at
+ all, but
+  no-one
+   ever
+ attended
+ them to
+ find out
+ if this
+was true.
+Anyway, it
+was argued
+ (by the
+Reader in
+  Woolly
+Thinking,
+ which is
+like Fuzzy
+  Logic,
+only less
+ so) that
+ lectures
+had taken
+ place in
+ essence,
+ so that
+ was all
+  right,
+   too.
+   And,
+therefore
+education
+  at the
+University
+  mostly
+worked by
+   the
+ age-old
+method of
+putting a
+  lot of
+  young
+people in
+   the
+ vicinity
+ of a lot
+ of books
+and hoping
+   that
+something
+would pass
+ from one
+  to the
+  other,
+while the
+  actual
+  young
+people put
+themselves
+  in the
+ vicinity
+ of inns
+   and
+ taverns
+   for
+ exactly
+ the same
+ reason.
+---
+
+* COMPARISON TEST - public/centre/Test16_poppins_10_C/progRun-expected.out : fail
+--- expected output ---
+  It's...
+supercalifragilisticexpialidocious!
+   Even
+though the
+ sound of
+   it is
+ something
+   quite
+atrocious.
+If you say
+  it loud
+  enough
+  you'll
+  always
+   sound
+precocious.
+Supercalifragilisticexpialidocious!
+--- submission output ---
+ It's...
+supercalifragilisticexpialidocious!
+   Even
+though the
+ sound of
+  it is
+something
+  quite
+atrocious.
+If you say
+ it loud
+  enough
+  you'll
+  always
+  sound
+precocious.
+Supercalifragilisticexpialidocious!
+---
+
+* COMPARISON TEST - public/justify/Test17_pratchett_80_J/progRun-expected.out : fail
+--- expected output ---
+Many things went on at the Unseen University and, regrettably teaching had to be
+one of them. The faculty had long ago confronted this fact and had perfected va-
+rious devices for avoiding it. But this was perfectly all right because to be f-
+air, so had the students.
+The system had worked quite well and, as happens in such cases, had taken on the
+status of a tradition. Lectures clearly took place, because they were down there
+on the timetable in black and white. The fact that no-one attended was an irrel-
+evant detail. It was occasionally maintained that this meant that the lectures
+did not in fact happen at all, but no-one ever attended them to find out if this
+was true. Anyway, it was argued (by the Reader in Woolly Thinking, which is like
+Fuzzy Logic, only less so) that lectures had taken place in essence, so that was
+all right, too.
+And, therefore education at the University mostly worked by the age-old method
+of putting a lot of young people in the vicinity of a lot of books and hoping t-
+hat something would pass from one to the other, while the actual young people p-
+ut themselves in the vicinity of inns and taverns for exactly the same reason.
+--- submission output ---
+Many  things  went  on  at  the  Unseen  University  and,  regrettably  teaching  had  to  be
+one   of   them.   The   faculty  had  long  ago  confronted  this  fact  and  had  perfected
+various   devices  for  avoiding  it.  But  this  was  perfectly  all  right  because  to  be
+fair, so had the students.
+The  system  had  worked  quite  well  and,  as  happens  in  such  cases,  had  taken  on  the
+status  of  a  tradition.  Lectures  clearly  took  place,  because  they  were  down  there
+on   the   timetable   in   black   and   white.   The  fact  that  no-one  attended  was  an
+irrelevant   detail.   It   was   occasionally   maintained   that  this  meant  that  the
+lectures   did   not   in  fact  happen  at  all,  but  no-one  ever  attended  them  to  find
+out   if   this  was  true.  Anyway,  it  was  argued  (by  the  Reader  in  Woolly  Thinking,
+which   is   like   Fuzzy   Logic,   only   less   so)  that  lectures  had  taken  place  in
+essence, so that was all right, too.
+And,   therefore   education  at  the  University  mostly  worked  by  the  age-old  method
+of   putting   a   lot  of  young  people  in  the  vicinity  of  a  lot  of  books  and  hoping
+that   something   would  pass  from  one  to  the  other,  while  the  actual  young  people
+put themselves in the vicinity of inns and taverns for exactly the same reason.
+---
+
+* COMPARISON TEST - public/justify/Test18_poppins_80_J/progRun-expected.out : fail
+--- expected output ---
+It's... supercalifragilisticexpialidocious! Even though the sound of it is some-
+thing quite atrocious. If you say it loud enough you'll always sound precocious.
+Supercalifragilisticexpialidocious!
+--- submission output ---
+It's...   supercalifragilisticexpialidocious!   Even   though   the   sound   of  it  is
+something   quite   atrocious.   If   you   say   it   loud   enough  you'll  always  sound
+precocious. Supercalifragilisticexpialidocious!
+---
+
+* COMPARISON TEST - public/justify/Test19_pratchett_78_J/progRun-expected.out : fail
+--- expected output ---
+Many things went on at the Unseen University and, regrettably teaching had to
+be one of them. The faculty had long ago confronted this fact and had perfect-
+ed various devices for avoiding it. But this was perfectly all right because
+to be fair, so had the students.
+The system had worked quite well and, as happens in such cases, had taken on
+the status of a tradition. Lectures clearly took place, because they were down
+there on the timetable in black and white. The fact that no-one attended was
+an irrelevant detail. It was occasionally maintained that this meant that the
+lectures did not in fact happen at all, but no-one ever attended them to find
+out if this was true. Anyway, it was argued (by the Reader in Woolly Thinking,
+which is like Fuzzy Logic, only less so) that lectures had taken place in ess-
+ence, so that was all right, too.
+And, therefore education at the University mostly worked by the age-old method
+of putting a lot of young people in the vicinity of a lot of books and hoping
+that something would pass from one to the other, while the actual young people
+put themselves in the vicinity of inns and taverns for exactly the same reaso-
+n.
+--- submission output ---
+Many   things  went  on  at  the  Unseen  University  and,  regrettably  teaching  had  to
+be   one   of   them.   The   faculty   had   long   ago   confronted  this  fact  and  had
+perfected   various   devices   for  avoiding  it.  But  this  was  perfectly  all  right
+because to be fair, so had the students.
+The   system   had  worked  quite  well  and,  as  happens  in  such  cases,  had  taken  on
+the  status  of  a  tradition.  Lectures  clearly  took  place,  because  they  were  down
+there   on   the  timetable  in  black  and  white.  The  fact  that  no-one  attended  was
+an   irrelevant  detail.  It  was  occasionally  maintained  that  this  meant  that  the
+lectures   did  not  in  fact  happen  at  all,  but  no-one  ever  attended  them  to  find
+out  if  this  was  true.  Anyway,  it  was  argued  (by  the  Reader  in  Woolly  Thinking,
+which   is   like   Fuzzy   Logic,   only  less  so)  that  lectures  had  taken  place  in
+essence, so that was all right, too.
+And,  therefore  education  at  the  University  mostly  worked  by  the  age-old  method
+of   putting  a  lot  of  young  people  in  the  vicinity  of  a  lot  of  books  and  hoping
+that  something  would  pass  from  one  to  the  other,  while  the  actual  young  people
+put   themselves   in   the   vicinity   of   inns   and  taverns  for  exactly  the  same
+reason.
+---
+
+* COMPARISON TEST - public/justify/Test20_poppins_78_J/progRun-expected.out : fail
+--- expected output ---
+It's... supercalifragilisticexpialidocious! Even though the sound of it is so-
+mething quite atrocious. If you say it loud enough you'll always sound precoc-
+ious. Supercalifragilisticexpialidocious!
+--- submission output ---
+It's...   supercalifragilisticexpialidocious!   Even   though   the  sound  of  it  is
+something   quite   atrocious.   If   you   say   it  loud  enough  you'll  always  sound
+precocious. Supercalifragilisticexpialidocious!
+---
+
+* COMPARISON TEST - public/justify/Test21_pratchett_10_J/progRun-expected.out : fail
+--- expected output ---
+Many thin-
+gs went on
+at the Un-
+seen Univ-
+ersity an-
+d, regret-
+tably tea-
+ching had
+to be one
+of them.
+The facul-
+ty had lo-
+ng ago co-
+nfronted
+this fact
+and had p-
+erfected
+various d-
+evices for
+avoiding
+it. But t-
+his was p-
+erfectly
+all right
+because to
+be fair,
+so had the
+students.
+The system
+had worked
+quite well
+and, as h-
+appens in
+such case-
+s, had ta-
+ken on the
+status of
+a traditi-
+on. Lectu-
+res clear-
+ly took p-
+lace, bec-
+ause they
+were down
+there on
+the timet-
+able in b-
+lack and
+white. The
+fact that
+no-one at-
+tended was
+an irrele-
+vant deta-
+il. It was
+occasiona-
+lly maint-
+ained that
+this meant
+that the
+lectures
+did not in
+fact happ-
+en at all,
+but no-one
+ever atte-
+nded them
+to find o-
+ut if this
+was true.
+Anyway, it
+was argued
+(by the R-
+eader in
+Woolly Th-
+inking, w-
+hich is l-
+ike Fuzzy
+Logic, on-
+ly less s-
+o) that l-
+ectures h-
+ad taken
+place in
+essence,
+so that w-
+as all ri-
+ght, too.
+And, ther-
+efore edu-
+cation at
+the Unive-
+rsity mos-
+tly worked
+by the ag-
+e-old met-
+hod of pu-
+tting a l-
+ot of you-
+ng people
+in the vi-
+cinity of
+a lot of
+books and
+hoping th-
+at someth-
+ing would
+pass from
+one to the
+other, wh-
+ile the a-
+ctual you-
+ng people
+put thems-
+elves in
+the vicin-
+ity of in-
+ns and ta-
+verns for
+exactly t-
+he same r-
+eason.
+--- submission output ---
+Many
+things
+went  on  at
+the  Unseen
+University
+and,
+regrettably
+teaching
+had   to  be
+one      of
+them.   The
+faculty
+had    long
+ago
+confronted
+this   fact
+and     had
+perfected
+various
+devices
+for
+avoiding
+it.     But
+this    was
+perfectly
+all   right
+because  to
+be    fair,
+so  had  the
+students.
+The  system
+had  worked
+quite  well
+and,     as
+happens  in
+such
+cases,  had
+taken    on
+the  status
+of        a
+tradition.
+Lectures
+clearly
+took
+place,
+because
+they   were
+down  there
+on      the
+timetable
+in    black
+and  white.
+The    fact
+that
+no-one
+attended
+was      an
+irrelevant
+detail.  It
+was
+occasionally
+maintained
+that   this
+meant  that
+the
+lectures
+did  not  in
+fact
+happen   at
+all,    but
+no-one
+ever
+attended
+them     to
+find    out
+if     this
+was   true.
+Anyway,  it
+was  argued
+(by     the
+Reader   in
+Woolly
+Thinking,
+which    is
+like  Fuzzy
+Logic,
+only   less
+so)    that
+lectures
+had   taken
+place    in
+essence,
+so     that
+was     all
+right,
+too.
+And,
+therefore
+education
+at      the
+University
+mostly
+worked   by
+the
+age-old
+method   of
+putting   a
+lot      of
+young
+people   in
+the
+vicinity
+of   a   lot
+of    books
+and  hoping
+that
+something
+would  pass
+from    one
+to      the
+other,
+while   the
+actual
+young
+people  put
+themselves
+in      the
+vicinity
+of     inns
+and
+taverns
+for
+exactly
+the    same
+reason.
+---
+
+* COMPARISON TEST - public/justify/Test22_poppins_10_J/progRun-expected.out : fail
+--- expected output ---
+It's... s-
+upercalif-
+ragilisti-
+cexpialid-
+ocious! E-
+ven though
+the sound
+of it is
+something
+quite atr-
+ocious. If
+you say it
+loud enou-
+gh you'll
+always so-
+und preco-
+cious. Su-
+percalifr-
+agilistic-
+expialido-
+cious!
+--- submission output ---
+It's...
+supercalifragilisticexpialidocious!
+Even
+though  the
+sound    of
+it       is
+something
+quite
+atrocious.
+If  you  say
+it     loud
+enough
+you'll
+always
+sound
+precocious.
+Supercalifragilisticexpialidocious!
+---
+
+* COMPARISON TEST - public/justify/Test98_java_short_10_J/progRun-expected.out : fail
+--- expected output ---
+Once a no-
+vice stud-
+ent, I em-
+barked on
+a journey
+into the
+intricate
+realm of
+Java prog-
+ramming,
+eager to
+conquer i-
+ts formid-
+able chal-
+lenges. At
+first, the
+syntax se-
+emed cryp-
+tic and u-
+nforgivin-
+g, but wi-
+th unwave-
+ring dete-
+rmination,
+I delved
+into the
+fundament-
+als. I de-
+ciphered
+the myste-
+ries of c-
+lasses, m-
+ethods, a-
+nd object-
+s, and gr-
+adually,
+my unders-
+tanding g-
+rew. Exce-
+ption han-
+dling pos-
+ed a daun-
+ting obst-
+acle, but
+I perseve-
+red, lear-
+ning to c-
+atch and
+throw exc-
+eptions w-
+ith fines-
+se. The w-
+orld of d-
+ata struc-
+tures ope-
+ned up, a-
+nd I marv-
+eled at t-
+he power
+of arrays,
+lists, and
+maps. Deb-
+ugging be-
+came my d-
+aily ritu-
+al, and I
+sharpened
+my skills
+in identi-
+fying and
+resolving
+errors. P-
+olymorphi-
+sm and in-
+heritance
+introduced
+complexit-
+y, but I
+grasped t-
+heir sign-
+ificance
+in creati-
+ng robust
+Java appl-
+ications.
+With pati-
+ence and
+practice,
+I mastered
+multithre-
+ading and
+synchroni-
+zation, h-
+arnessing
+their pot-
+ential for
+efficient
+concurrent
+programmi-
+ng. Gradu-
+ally, I c-
+rafted el-
+egant sol-
+utions, e-
+ncapsulat-
+ing funct-
+ionality
+within cl-
+asses and
+interface-
+s. Through
+dedication
+and count-
+less hours
+of coding,
+I emerged
+as a prof-
+icient Ja-
+va progra-
+mmer, con-
+quering c-
+hallenges
+with unwa-
+vering de-
+terminati-
+on.
+--- submission output ---
+Once      a
+novice
+student,  I
+embarked
+on        a
+journey
+into    the
+intricate
+realm    of
+Java
+programming,
+eager    to
+conquer
+its
+formidable
+challenges.
+At   first,
+the  syntax
+seemed
+cryptic
+and
+unforgiving,
+but    with
+unwavering
+determination,
+I    delved
+into    the
+fundamentals.
+I
+deciphered
+the
+mysteries
+of
+classes,
+methods,
+and
+objects,
+and
+gradually,
+my
+understanding
+grew.
+Exception
+handling
+posed     a
+daunting
+obstacle,
+but       I
+persevered,
+learning
+to    catch
+and   throw
+exceptions
+with
+finesse.
+The   world
+of     data
+structures
+opened  up,
+and       I
+marveled
+at      the
+power    of
+arrays,
+lists,  and
+maps.
+Debugging
+became   my
+daily
+ritual,
+and       I
+sharpened
+my   skills
+in
+identifying
+and
+resolving
+errors.
+Polymorphism
+and
+inheritance
+introduced
+complexity,
+but       I
+grasped
+their
+significance
+in
+creating
+robust
+Java
+applications.
+With
+patience
+and
+practice,
+I  mastered
+multithreading
+and
+synchronization,
+harnessing
+their
+potential
+for
+efficient
+concurrent
+programming.
+Gradually,
+I   crafted
+elegant
+solutions,
+encapsulating
+functionality
+within
+classes
+and
+interfaces.
+Through
+dedication
+and
+countless
+hours    of
+coding,   I
+emerged  as
+a
+proficient
+Java
+programmer,
+conquering
+challenges
+with
+unwavering
+determination.
+---
+
+* COMPARISON TEST - public/justify/Test98_java_short_50_J/progRun-expected.out : fail
+--- expected output ---
+Once a novice student, I embarked on a journey in-
+to the intricate realm of Java programming, eager
+to conquer its formidable challenges. At first, t-
+he syntax seemed cryptic and unforgiving, but with
+unwavering determination, I delved into the funda-
+mentals. I deciphered the mysteries of classes, m-
+ethods, and objects, and gradually, my understand-
+ing grew. Exception handling posed a daunting obs-
+tacle, but I persevered, learning to catch and th-
+row exceptions with finesse. The world of data st-
+ructures opened up, and I marveled at the power of
+arrays, lists, and maps. Debugging became my daily
+ritual, and I sharpened my skills in identifying
+and resolving errors. Polymorphism and inheritance
+introduced complexity, but I grasped their signif-
+icance in creating robust Java applications. With
+patience and practice, I mastered multithreading
+and synchronization, harnessing their potential f-
+or efficient concurrent programming. Gradually, I
+crafted elegant solutions, encapsulating function-
+ality within classes and interfaces. Through dedi-
+cation and countless hours of coding, I emerged as
+a proficient Java programmer, conquering challeng-
+es with unwavering determination.
+--- submission output ---
+Once   a   novice   student,   I  embarked  on  a  journey
+into   the   intricate   realm   of   Java  programming,
+eager   to   conquer   its   formidable  challenges.  At
+first,   the  syntax  seemed  cryptic  and  unforgiving,
+but   with   unwavering  determination,  I  delved  into
+the   fundamentals.   I   deciphered  the  mysteries  of
+classes,   methods,   and  objects,  and  gradually,  my
+understanding   grew.   Exception   handling   posed  a
+daunting   obstacle,   but  I  persevered,  learning  to
+catch  and  throw  exceptions  with  finesse.  The  world
+of   data   structures   opened  up,  and  I  marveled  at
+the   power   of   arrays,  lists,  and  maps.  Debugging
+became   my  daily  ritual,  and  I  sharpened  my  skills
+in   identifying  and  resolving  errors.  Polymorphism
+and    inheritance   introduced   complexity,   but   I
+grasped  their  significance  in  creating  robust  Java
+applications.    With    patience   and   practice,   I
+mastered    multithreading    and    synchronization,
+harnessing     their     potential    for    efficient
+concurrent    programming.    Gradually,   I   crafted
+elegant    solutions,   encapsulating   functionality
+within   classes  and  interfaces.  Through  dedication
+and   countless   hours   of   coding,   I  emerged  as  a
+proficient   Java  programmer,  conquering  challenges
+with unwavering determination.
+---
+
+* COMPARISON TEST - public/justify/Test98_java_short_5_J/progRun-expected.out : fail
+--- expected output ---
+Once
+a no-
+vice
+stud-
+ent,
+I em-
+bark-
+ed on
+a jo-
+urney
+into
+the
+intr-
+icate
+realm
+of J-
+ava
+prog-
+ramm-
+ing,
+eager
+to c-
+onqu-
+er i-
+ts f-
+ormi-
+dable
+chal-
+leng-
+es.
+At f-
+irst,
+the
+synt-
+ax s-
+eemed
+cryp-
+tic
+and
+unfo-
+rgiv-
+ing,
+but
+with
+unwa-
+veri-
+ng d-
+eter-
+mina-
+tion,
+I de-
+lved
+into
+the
+fund-
+amen-
+tals.
+I de-
+ciph-
+ered
+the
+myst-
+eries
+of c-
+lass-
+es,
+meth-
+ods,
+and
+obje-
+cts,
+and
+grad-
+uall-
+y, my
+unde-
+rsta-
+nding
+grew.
+Exce-
+ption
+hand-
+ling
+posed
+a da-
+unti-
+ng o-
+bsta-
+cle,
+but I
+pers-
+ever-
+ed,
+lear-
+ning
+to c-
+atch
+and
+throw
+exce-
+ptio-
+ns w-
+ith
+fine-
+sse.
+The
+world
+of d-
+ata
+stru-
+ctur-
+es o-
+pened
+up,
+and I
+marv-
+eled
+at t-
+he p-
+ower
+of a-
+rray-
+s, l-
+ists,
+and
+maps.
+Debu-
+gging
+beca-
+me my
+daily
+ritu-
+al,
+and I
+shar-
+pened
+my s-
+kills
+in i-
+dent-
+ifyi-
+ng a-
+nd r-
+esol-
+ving
+erro-
+rs.
+Poly-
+morp-
+hism
+and
+inhe-
+rita-
+nce
+intr-
+oduc-
+ed c-
+ompl-
+exit-
+y, b-
+ut I
+gras-
+ped
+their
+sign-
+ific-
+ance
+in c-
+reat-
+ing
+robu-
+st J-
+ava
+appl-
+icat-
+ions.
+With
+pati-
+ence
+and
+prac-
+tice,
+I ma-
+ster-
+ed m-
+ulti-
+thre-
+ading
+and
+sync-
+hron-
+izat-
+ion,
+harn-
+essi-
+ng t-
+heir
+pote-
+ntial
+for
+effi-
+cient
+conc-
+urre-
+nt p-
+rogr-
+ammi-
+ng.
+Grad-
+uall-
+y, I
+craf-
+ted
+eleg-
+ant
+solu-
+tion-
+s, e-
+ncap-
+sula-
+ting
+func-
+tion-
+ality
+with-
+in c-
+lass-
+es a-
+nd i-
+nter-
+face-
+s. T-
+hrou-
+gh d-
+edic-
+ation
+and
+coun-
+tless
+hours
+of c-
+odin-
+g, I
+emer-
+ged
+as a
+prof-
+icie-
+nt J-
+ava
+prog-
+ramm-
+er,
+conq-
+ueri-
+ng c-
+hall-
+enges
+with
+unwa-
+veri-
+ng d-
+eter-
+mina-
+tion.
+--- submission output ---
+Once
+a
+novice
+student,
+I
+embarked
+on   a
+journey
+into
+the
+intricate
+realm
+of
+Java
+programming,
+eager
+to
+conquer
+its
+formidable
+challenges.
+At
+first,
+the
+syntax
+seemed
+cryptic
+and
+unforgiving,
+but
+with
+unwavering
+determination,
+I
+delved
+into
+the
+fundamentals.
+I
+deciphered
+the
+mysteries
+of
+classes,
+methods,
+and
+objects,
+and
+gradually,
+my
+understanding
+grew.
+Exception
+handling
+posed
+a
+daunting
+obstacle,
+but  I
+persevered,
+learning
+to
+catch
+and
+throw
+exceptions
+with
+finesse.
+The
+world
+of
+data
+structures
+opened
+up,
+and  I
+marveled
+at
+the
+power
+of
+arrays,
+lists,
+and
+maps.
+Debugging
+became
+my
+daily
+ritual,
+and  I
+sharpened
+my
+skills
+in
+identifying
+and
+resolving
+errors.
+Polymorphism
+and
+inheritance
+introduced
+complexity,
+but  I
+grasped
+their
+significance
+in
+creating
+robust
+Java
+applications.
+With
+patience
+and
+practice,
+I
+mastered
+multithreading
+and
+synchronization,
+harnessing
+their
+potential
+for
+efficient
+concurrent
+programming.
+Gradually,
+I
+crafted
+elegant
+solutions,
+encapsulating
+functionality
+within
+classes
+and
+interfaces.
+Through
+dedication
+and
+countless
+hours
+of
+coding,
+I
+emerged
+as   a
+proficient
+Java
+programmer,
+conquering
+challenges
+with
+unwavering
+determination.
+---
+
+* COMPARISON TEST - public/justify/Test98_java_short_90_J/progRun-expected.out : fail
+--- expected output ---
+Once a novice student, I embarked on a journey into the intricate realm of Java programmi-
+ng, eager to conquer its formidable challenges. At first, the syntax seemed cryptic and u-
+nforgiving, but with unwavering determination, I delved into the fundamentals. I decipher-
+ed the mysteries of classes, methods, and objects, and gradually, my understanding grew.
+Exception handling posed a daunting obstacle, but I persevered, learning to catch and thr-
+ow exceptions with finesse. The world of data structures opened up, and I marveled at the
+power of arrays, lists, and maps. Debugging became my daily ritual, and I sharpened my sk-
+ills in identifying and resolving errors. Polymorphism and inheritance introduced complex-
+ity, but I grasped their significance in creating robust Java applications. With patience
+and practice, I mastered multithreading and synchronization, harnessing their potential f-
+or efficient concurrent programming. Gradually, I crafted elegant solutions, encapsulating
+functionality within classes and interfaces. Through dedication and countless hours of co-
+ding, I emerged as a proficient Java programmer, conquering challenges with unwavering de-
+termination.
+--- submission output ---
+Once   a   novice   student,   I   embarked   on   a   journey   into   the   intricate  realm  of  Java
+programming,   eager   to   conquer   its   formidable   challenges.  At  first,  the  syntax  seemed
+cryptic    and    unforgiving,    but   with   unwavering   determination,   I   delved   into   the
+fundamentals.   I  deciphered  the  mysteries  of  classes,  methods,  and  objects,  and  gradually,
+my   understanding   grew.   Exception   handling  posed  a  daunting  obstacle,  but  I  persevered,
+learning   to   catch  and  throw  exceptions  with  finesse.  The  world  of  data  structures  opened
+up,   and   I   marveled   at   the  power  of  arrays,  lists,  and  maps.  Debugging  became  my  daily
+ritual,   and   I   sharpened  my  skills  in  identifying  and  resolving  errors.  Polymorphism  and
+inheritance   introduced   complexity,   but   I  grasped  their  significance  in  creating  robust
+Java    applications.    With    patience    and    practice,   I   mastered   multithreading   and
+synchronization,    harnessing    their   potential   for   efficient   concurrent   programming.
+Gradually,   I   crafted   elegant   solutions,  encapsulating  functionality  within  classes  and
+interfaces.   Through   dedication   and  countless  hours  of  coding,  I  emerged  as  a  proficient
+Java programmer, conquering challenges with unwavering determination.
+---
+
+* COMPARISON TEST - public/justify/Test99_java_10_J/progRun-expected.out : fail
+--- expected output ---
+At St. An-
+drews Uni-
+versity,
+nestled a-
+midst the
+historic
+charm of
+Scotland,
+one stude-
+nt's acad-
+emic jour-
+ney has t-
+aken an e-
+xciting t-
+urn as th-
+ey delve
+into the
+world of
+programmi-
+ng. With a
+thirst for
+knowledge
+and a pas-
+sion for
+problem-s-
+olving, t-
+his dilig-
+ent stude-
+nt has em-
+barked on
+a compell-
+ing quest
+to master
+the intri-
+cacies of
+Java, a v-
+ersatile
+and widel-
+y-used pr-
+ogramming
+language.
+The pictu-
+resque ca-
+mpus, with
+its centu-
+ries-old
+architect-
+ure, serv-
+es as an
+inspiring
+backdrop
+to their
+coding en-
+deavors.
+Through l-
+ectures,
+hands-on
+labs, and
+collabora-
+tive proj-
+ects, this
+student is
+not only
+honing th-
+eir coding
+skills but
+also lear-
+ning to t-
+hink crit-
+ically, a-
+nalyze al-
+gorithms,
+and create
+software
+solutions
+that have
+real-world
+applicati-
+ons. So..-
+... With
+each line
+of code t-
+hey write,
+they inch
+closer to
+becoming a
+proficient
+Java deve-
+loper, eq-
+uipped to
+tackle the
+challenges
+of the di-
+gital age
+and contr-
+ibute to
+the ever--
+evolving
+tech land-
+scape. Wo-
+w!!!! St.
+Andrews p-
+rovides t-
+he perfect
+environme-
+nt for nu-
+rturing t-
+heir inte-
+llectual
+curiosity,
+and their
+journey i-
+nto the w-
+orld of J-
+ava is ju-
+st the be-
+ginning of
+a promisi-
+ng academ-
+ic and pr-
+ofessional
+adventure.
+--- submission output ---
+At      St.
+Andrews
+University,
+nestled
+amidst  the
+historic
+charm    of
+Scotland,
+one
+student's
+academic
+journey
+has   taken
+an
+exciting
+turn     as
+they  delve
+into    the
+world    of
+programming.
+With      a
+thirst  for
+knowledge
+and       a
+passion
+for
+problem-solving,
+this
+diligent
+student
+has
+embarked
+on        a
+compelling
+quest    to
+master  the
+intricacies
+of  Java,  a
+versatile
+and
+widely-used
+programming
+language.
+The
+picturesque
+campus,
+with    its
+centuries-old
+architecture,
+serves   as
+an
+inspiring
+backdrop
+to    their
+coding
+endeavors.
+Through
+lectures,
+hands-on
+labs,   and
+collaborative
+projects,
+this
+student  is
+not    only
+honing
+their
+coding
+skills  but
+also
+learning
+to    think
+critically,
+analyze
+algorithms,
+and  create
+software
+solutions
+that   have
+real-world
+applications.
+So.....
+With   each
+line     of
+code   they
+write,
+they   inch
+closer   to
+becoming  a
+proficient
+Java
+developer,
+equipped
+to   tackle
+the
+challenges
+of      the
+digital
+age     and
+contribute
+to      the
+ever-evolving
+tech
+landscape.
+Wow!!!!
+St.
+Andrews
+provides
+the
+perfect
+environment
+for
+nurturing
+their
+intellectual
+curiosity,
+and   their
+journey
+into    the
+world    of
+Java     is
+just    the
+beginning
+of        a
+promising
+academic
+and
+professional
+adventure.
+---
+
+* COMPARISON TEST - public/justify/Test99_java_51_J/progRun-expected.out : fail
+--- expected output ---
+At St. Andrews University, nestled amidst the hist-
+oric charm of Scotland, one student's academic jou-
+rney has taken an exciting turn as they delve into
+the world of programming. With a thirst for knowle-
+dge and a passion for problem-solving, this dilige-
+nt student has embarked on a compelling quest to m-
+aster the intricacies of Java, a versatile and wid-
+ely-used programming language. The picturesque cam-
+pus, with its centuries-old architecture, serves as
+an inspiring backdrop to their coding endeavors. T-
+hrough lectures, hands-on labs, and collaborative
+projects, this student is not only honing their co-
+ding skills but also learning to think critically,
+analyze algorithms, and create software solutions
+that have real-world applications. So..... With ea-
+ch line of code they write, they inch closer to be-
+coming a proficient Java developer, equipped to ta-
+ckle the challenges of the digital age and contrib-
+ute to the ever-evolving tech landscape. Wow!!!! S-
+t. Andrews provides the perfect environment for nu-
+rturing their intellectual curiosity, and their jo-
+urney into the world of Java is just the beginning
+of a promising academic and professional adventure.
+--- submission output ---
+At   St.   Andrews   University,   nestled   amidst   the
+historic   charm  of  Scotland,  one  student's  academic
+journey   has   taken   an  exciting  turn  as  they  delve
+into   the   world   of  programming.  With  a  thirst  for
+knowledge   and   a  passion  for  problem-solving,  this
+diligent  student  has  embarked  on  a  compelling  quest
+to   master  the  intricacies  of  Java,  a  versatile  and
+widely-used   programming   language.  The  picturesque
+campus,  with  its  centuries-old  architecture,  serves
+as  an  inspiring  backdrop  to  their  coding  endeavors.
+Through   lectures,  hands-on  labs,  and  collaborative
+projects,   this   student   is   not  only  honing  their
+coding    skills    but    also    learning    to   think
+critically,  analyze  algorithms,  and  create  software
+solutions    that    have    real-world   applications.
+So.....   With   each   line   of  code  they  write,  they
+inch    closer    to    becoming    a   proficient   Java
+developer,  equipped  to  tackle  the  challenges  of  the
+digital   age   and   contribute   to  the  ever-evolving
+tech   landscape.   Wow!!!!   St.  Andrews  provides  the
+perfect     environment     for     nurturing     their
+intellectual   curiosity,  and  their  journey  into  the
+world   of  Java  is  just  the  beginning  of  a  promising
+academic and professional adventure.
+---
+
+* COMPARISON TEST - public/justify/Test99_java_5_J/progRun-expected.out : fail
+--- expected output ---
+At S-
+t. A-
+ndre-
+ws U-
+nive-
+rsit-
+y, n-
+estl-
+ed a-
+midst
+the
+hist-
+oric
+charm
+of S-
+cotl-
+and,
+one
+stud-
+ent's
+acad-
+emic
+jour-
+ney
+has
+taken
+an e-
+xcit-
+ing
+turn
+as t-
+hey
+delve
+into
+the
+world
+of p-
+rogr-
+ammi-
+ng.
+With
+a th-
+irst
+for
+know-
+ledge
+and a
+pass-
+ion
+for
+prob-
+lem--
+solv-
+ing,
+this
+dili-
+gent
+stud-
+ent
+has
+emba-
+rked
+on a
+comp-
+elli-
+ng q-
+uest
+to m-
+aster
+the
+intr-
+icac-
+ies
+of J-
+ava,
+a ve-
+rsat-
+ile
+and
+wide-
+ly-u-
+sed
+prog-
+ramm-
+ing
+lang-
+uage.
+The
+pict-
+ures-
+que
+camp-
+us,
+with
+its
+cent-
+urie-
+s-old
+arch-
+itec-
+ture,
+serv-
+es as
+an i-
+nspi-
+ring
+back-
+drop
+to t-
+heir
+codi-
+ng e-
+ndea-
+vors.
+Thro-
+ugh
+lect-
+ures,
+hand-
+s-on
+labs,
+and
+coll-
+abor-
+ative
+proj-
+ects,
+this
+stud-
+ent
+is n-
+ot o-
+nly
+honi-
+ng t-
+heir
+codi-
+ng s-
+kills
+but
+also
+lear-
+ning
+to t-
+hink
+crit-
+ical-
+ly,
+anal-
+yze
+algo-
+rith-
+ms,
+and
+crea-
+te s-
+oftw-
+are
+solu-
+tions
+that
+have
+real-
+-wor-
+ld a-
+ppli-
+cati-
+ons.
+So..-
+...
+With
+each
+line
+of c-
+ode
+they
+writ-
+e, t-
+hey
+inch
+clos-
+er to
+beco-
+ming
+a pr-
+ofic-
+ient
+Java
+deve-
+lope-
+r, e-
+quip-
+ped
+to t-
+ackle
+the
+chal-
+leng-
+es of
+the
+digi-
+tal
+age
+and
+cont-
+ribu-
+te to
+the
+ever-
+-evo-
+lving
+tech
+land-
+scap-
+e. W-
+ow!!-
+!! S-
+t. A-
+ndre-
+ws p-
+rovi-
+des
+the
+perf-
+ect
+envi-
+ronm-
+ent
+for
+nurt-
+uring
+their
+inte-
+llec-
+tual
+curi-
+osit-
+y, a-
+nd t-
+heir
+jour-
+ney
+into
+the
+world
+of J-
+ava
+is j-
+ust
+the
+begi-
+nning
+of a
+prom-
+ising
+acad-
+emic
+and
+prof-
+essi-
+onal
+adve-
+ntur-
+e.
+--- submission output ---
+At
+St.
+Andrews
+University,
+nestled
+amidst
+the
+historic
+charm
+of
+Scotland,
+one
+student's
+academic
+journey
+has
+taken
+an
+exciting
+turn
+as
+they
+delve
+into
+the
+world
+of
+programming.
+With
+a
+thirst
+for
+knowledge
+and  a
+passion
+for
+problem-solving,
+this
+diligent
+student
+has
+embarked
+on   a
+compelling
+quest
+to
+master
+the
+intricacies
+of
+Java,
+a
+versatile
+and
+widely-used
+programming
+language.
+The
+picturesque
+campus,
+with
+its
+centuries-old
+architecture,
+serves
+as  an
+inspiring
+backdrop
+to
+their
+coding
+endeavors.
+Through
+lectures,
+hands-on
+labs,
+and
+collaborative
+projects,
+this
+student
+is
+not
+only
+honing
+their
+coding
+skills
+but
+also
+learning
+to
+think
+critically,
+analyze
+algorithms,
+and
+create
+software
+solutions
+that
+have
+real-world
+applications.
+So.....
+With
+each
+line
+of
+code
+they
+write,
+they
+inch
+closer
+to
+becoming
+a
+proficient
+Java
+developer,
+equipped
+to
+tackle
+the
+challenges
+of
+the
+digital
+age
+and
+contribute
+to
+the
+ever-evolving
+tech
+landscape.
+Wow!!!!
+St.
+Andrews
+provides
+the
+perfect
+environment
+for
+nurturing
+their
+intellectual
+curiosity,
+and
+their
+journey
+into
+the
+world
+of
+Java
+is
+just
+the
+beginning
+of   a
+promising
+academic
+and
+professional
+adventure.
+---
+
+* TEST - public/left/Test01_noArgs_L/testNoArgs : pass
+* COMPARISON TEST - public/left/Test02_invalidFile_L/progRun-expected.out : pass
+* TEST - public/left/Test03_invalidLength_L/testInvalidLength : pass
+* TEST - public/left/Test03_invalidType_L/testInvalidType : pass
+* COMPARISON TEST - public/left/Test04_pratchett_80_L/progRun-expected.out : fail
+--- expected output ---
+Many things went on at the Unseen University and, regrettably teaching had to be
+one of them. The faculty had long ago confronted this fact and had perfected
+various devices for avoiding it. But this was perfectly all right because to be
+fair, so had the students.
+The system had worked quite well and, as happens in such cases, had taken on the
+status of a tradition. Lectures clearly took place, because they were down there
+on the timetable in black and white. The fact that no-one attended was an
+irrelevant detail. It was occasionally maintained that this meant that the
+lectures did not in fact happen at all, but no-one ever attended them to find
+out if this was true. Anyway, it was argued (by the Reader in Woolly Thinking,
+which is like Fuzzy Logic, only less so) that lectures had taken place in
+essence, so that was all right, too.
+And, therefore education at the University mostly worked by the age-old method
+of putting a lot of young people in the vicinity of a lot of books and hoping
+that something would pass from one to the other, while the actual young people
+put themselves in the vicinity of inns and taverns for exactly the same reason.
+--- submission output ---
+Many things went on at the Unseen University and, regrettably teaching had to
+be one of them. The faculty had long ago confronted this fact and had perfected
+various devices for avoiding it. But this was perfectly all right because to be
+fair, so had the students.
+The system had worked quite well and, as happens in such cases, had taken on
+the status of a tradition. Lectures clearly took place, because they were down
+there on the timetable in black and white. The fact that no-one attended was an
+irrelevant detail. It was occasionally maintained that this meant that the
+lectures did not in fact happen at all, but no-one ever attended them to find
+out if this was true. Anyway, it was argued (by the Reader in Woolly Thinking,
+which is like Fuzzy Logic, only less so) that lectures had taken place in
+essence, so that was all right, too.
+And, therefore education at the University mostly worked by the age-old method
+of putting a lot of young people in the vicinity of a lot of books and hoping
+that something would pass from one to the other, while the actual young people
+put themselves in the vicinity of inns and taverns for exactly the same reason.
+---
+
+* COMPARISON TEST - public/left/Test05_poppins_80_L/progRun-expected.out : pass
+* COMPARISON TEST - public/left/Test06_pratchett_78_L/progRun-expected.out : fail
+--- expected output ---
+Many things went on at the Unseen University and, regrettably teaching had to
+be one of them. The faculty had long ago confronted this fact and had
+perfected various devices for avoiding it. But this was perfectly all right
+because to be fair, so had the students.
+The system had worked quite well and, as happens in such cases, had taken on
+the status of a tradition. Lectures clearly took place, because they were down
+there on the timetable in black and white. The fact that no-one attended was
+an irrelevant detail. It was occasionally maintained that this meant that the
+lectures did not in fact happen at all, but no-one ever attended them to find
+out if this was true. Anyway, it was argued (by the Reader in Woolly Thinking,
+which is like Fuzzy Logic, only less so) that lectures had taken place in
+essence, so that was all right, too.
+And, therefore education at the University mostly worked by the age-old method
+of putting a lot of young people in the vicinity of a lot of books and hoping
+that something would pass from one to the other, while the actual young people
+put themselves in the vicinity of inns and taverns for exactly the same
+reason.
+--- submission output ---
+Many things went on at the Unseen University and, regrettably teaching had to
+be one of them. The faculty had long ago confronted this fact and had
+perfected various devices for avoiding it. But this was perfectly all right
+because to be fair, so had the students.
+The system had worked quite well and, as happens in such cases, had taken on
+the status of a tradition. Lectures clearly took place, because they were
+down there on the timetable in black and white. The fact that no-one attended
+was an irrelevant detail. It was occasionally maintained that this meant that
+the lectures did not in fact happen at all, but no-one ever attended them to
+find out if this was true. Anyway, it was argued (by the Reader in Woolly
+Thinking, which is like Fuzzy Logic, only less so) that lectures had taken
+place in essence, so that was all right, too.
+And, therefore education at the University mostly worked by the age-old
+method of putting a lot of young people in the vicinity of a lot of books and
+hoping that something would pass from one to the other, while the actual
+young people put themselves in the vicinity of inns and taverns for exactly
+the same reason.
+---
+
+* COMPARISON TEST - public/left/Test07_poppins_78_L/progRun-expected.out : pass
+* COMPARISON TEST - public/left/Test08_pratchett_10_L/progRun-expected.out : fail
+--- expected output ---
+Many
+things
+went on at
+the Unseen
+University
+and,
+regrettably
+teaching
+had to be
+one of
+them. The
+faculty
+had long
+ago
+confronted
+this fact
+and had
+perfected
+various
+devices
+for
+avoiding
+it. But
+this was
+perfectly
+all right
+because to
+be fair,
+so had the
+students.
+The system
+had worked
+quite well
+and, as
+happens in
+such
+cases, had
+taken on
+the status
+of a
+tradition.
+Lectures
+clearly
+took
+place,
+because
+they were
+down there
+on the
+timetable
+in black
+and white.
+The fact
+that
+no-one
+attended
+was an
+irrelevant
+detail. It
+was
+occasionally
+maintained
+that this
+meant that
+the
+lectures
+did not in
+fact
+happen at
+all, but
+no-one
+ever
+attended
+them to
+find out
+if this
+was true.
+Anyway, it
+was argued
+(by the
+Reader in
+Woolly
+Thinking,
+which is
+like Fuzzy
+Logic,
+only less
+so) that
+lectures
+had taken
+place in
+essence,
+so that
+was all
+right,
+too.
+And,
+therefore
+education
+at the
+University
+mostly
+worked by
+the
+age-old
+method of
+putting a
+lot of
+young
+people in
+the
+vicinity
+of a lot
+of books
+and hoping
+that
+something
+would pass
+from one
+to the
+other,
+while the
+actual
+young
+people put
+themselves
+in the
+vicinity
+of inns
+and
+taverns
+for
+exactly
+the same
+reason.
+--- submission output ---
+Many
+things
+went on
+at the
+Unseen
+University
+and,
+regrettably
+teaching
+had to be
+one of
+them. The
+faculty
+had long
+ago
+confronted
+this fact
+and had
+perfected
+various
+devices
+for
+avoiding
+it. But
+this was
+perfectly
+all right
+because
+to be
+fair, so
+had the
+students.
+The
+system
+had
+worked
+quite
+well and,
+as
+happens
+in such
+cases,
+had taken
+on the
+status of
+a
+tradition.
+Lectures
+clearly
+took
+place,
+because
+they were
+down
+there on
+the
+timetable
+in black
+and
+white.
+The fact
+that
+no-one
+attended
+was an
+irrelevant
+detail.
+It was
+occasionally
+maintained
+that this
+meant
+that the
+lectures
+did not
+in fact
+happen at
+all, but
+no-one
+ever
+attended
+them to
+find out
+if this
+was true.
+Anyway,
+it was
+argued
+(by the
+Reader in
+Woolly
+Thinking,
+which is
+like
+Fuzzy
+Logic,
+only less
+so) that
+lectures
+had taken
+place in
+essence,
+so that
+was all
+right,
+too.
+And,
+therefore
+education
+at the
+University
+mostly
+worked by
+the
+age-old
+method of
+putting a
+lot of
+young
+people in
+the
+vicinity
+of a lot
+of books
+and
+hoping
+that
+something
+would
+pass from
+one to
+the
+other,
+while the
+actual
+young
+people
+put
+themselves
+in the
+vicinity
+of inns
+and
+taverns
+for
+exactly
+the same
+reason.
+---
+
+* COMPARISON TEST - public/left/Test09_poppins_10_L/progRun-expected.out : fail
+--- expected output ---
+It's...
+supercalifragilisticexpialidocious!
+Even
+though the
+sound of
+it is
+something
+quite
+atrocious.
+If you say
+it loud
+enough
+you'll
+always
+sound
+precocious.
+Supercalifragilisticexpialidocious!
+--- submission output ---
+It's...
+supercalifragilisticexpialidocious!
+Even
+though
+the sound
+of it is
+something
+quite
+atrocious.
+If you
+say it
+loud
+enough
+you'll
+always
+sound
+precocious.
+Supercalifragilisticexpialidocious!
+---
+
+* TEST - public/left/Test10_pratchett_m1_L/testInvalidLength : pass
+* COMPARISON TEST - public/right/Test23_pratchett_80_R/progRun-expected.out : fail
+--- expected output ---
+Many things went on at the Unseen University and, regrettably teaching had to be
+    one of them. The faculty had long ago confronted this fact and had perfected
+ various devices for avoiding it. But this was perfectly all right because to be
+                                                      fair, so had the students.
+The system had worked quite well and, as happens in such cases, had taken on the
+status of a tradition. Lectures clearly took place, because they were down there
+       on the timetable in black and white. The fact that no-one attended was an
+      irrelevant detail. It was occasionally maintained that this meant that the
+   lectures did not in fact happen at all, but no-one ever attended them to find
+  out if this was true. Anyway, it was argued (by the Reader in Woolly Thinking,
+       which is like Fuzzy Logic, only less so) that lectures had taken place in
+                                            essence, so that was all right, too.
+  And, therefore education at the University mostly worked by the age-old method
+   of putting a lot of young people in the vicinity of a lot of books and hoping
+  that something would pass from one to the other, while the actual young people
+ put themselves in the vicinity of inns and taverns for exactly the same reason.
+--- submission output ---
+  Many things went on at the Unseen University and, regrettably teaching had to
+be one of them. The faculty had long ago confronted this fact and had perfected
+various devices for avoiding it. But this was perfectly all right because to be
+                                                     fair, so had the students.
+   The system had worked quite well and, as happens in such cases, had taken on
+ the status of a tradition. Lectures clearly took place, because they were down
+there on the timetable in black and white. The fact that no-one attended was an
+     irrelevant detail. It was occasionally maintained that this meant that the
+  lectures did not in fact happen at all, but no-one ever attended them to find
+ out if this was true. Anyway, it was argued (by the Reader in Woolly Thinking,
+      which is like Fuzzy Logic, only less so) that lectures had taken place in
+                                           essence, so that was all right, too.
+ And, therefore education at the University mostly worked by the age-old method
+  of putting a lot of young people in the vicinity of a lot of books and hoping
+ that something would pass from one to the other, while the actual young people
+put themselves in the vicinity of inns and taverns for exactly the same reason.
+---
+
+* COMPARISON TEST - public/right/Test24_poppins_80_R/progRun-expected.out : fail
+--- expected output ---
+      It's... supercalifragilisticexpialidocious! Even though the sound of it is
+        something quite atrocious. If you say it loud enough you'll always sound
+                                 precocious. Supercalifragilisticexpialidocious!
+--- submission output ---
+     It's... supercalifragilisticexpialidocious! Even though the sound of it is
+       something quite atrocious. If you say it loud enough you'll always sound
+                                precocious. Supercalifragilisticexpialidocious!
+---
+
+* COMPARISON TEST - public/right/Test25_pratchett_78_R/progRun-expected.out : fail
+--- expected output ---
+ Many things went on at the Unseen University and, regrettably teaching had to
+         be one of them. The faculty had long ago confronted this fact and had
+   perfected various devices for avoiding it. But this was perfectly all right
+                                      because to be fair, so had the students.
+  The system had worked quite well and, as happens in such cases, had taken on
+the status of a tradition. Lectures clearly took place, because they were down
+  there on the timetable in black and white. The fact that no-one attended was
+ an irrelevant detail. It was occasionally maintained that this meant that the
+ lectures did not in fact happen at all, but no-one ever attended them to find
+out if this was true. Anyway, it was argued (by the Reader in Woolly Thinking,
+     which is like Fuzzy Logic, only less so) that lectures had taken place in
+                                          essence, so that was all right, too.
+And, therefore education at the University mostly worked by the age-old method
+ of putting a lot of young people in the vicinity of a lot of books and hoping
+that something would pass from one to the other, while the actual young people
+       put themselves in the vicinity of inns and taverns for exactly the same
+                                                                       reason.
+--- submission output ---
+Many things went on at the Unseen University and, regrettably teaching had to
+        be one of them. The faculty had long ago confronted this fact and had
+  perfected various devices for avoiding it. But this was perfectly all right
+                                     because to be fair, so had the students.
+ The system had worked quite well and, as happens in such cases, had taken on
+    the status of a tradition. Lectures clearly took place, because they were
+down there on the timetable in black and white. The fact that no-one attended
+was an irrelevant detail. It was occasionally maintained that this meant that
+ the lectures did not in fact happen at all, but no-one ever attended them to
+    find out if this was true. Anyway, it was argued (by the Reader in Woolly
+   Thinking, which is like Fuzzy Logic, only less so) that lectures had taken
+                                place in essence, so that was all right, too.
+      And, therefore education at the University mostly worked by the age-old
+method of putting a lot of young people in the vicinity of a lot of books and
+     hoping that something would pass from one to the other, while the actual
+  young people put themselves in the vicinity of inns and taverns for exactly
+                                                             the same reason.
+---
+
+* COMPARISON TEST - public/right/Test26_poppins_78_R/progRun-expected.out : fail
+--- expected output ---
+    It's... supercalifragilisticexpialidocious! Even though the sound of it is
+      something quite atrocious. If you say it loud enough you'll always sound
+                               precocious. Supercalifragilisticexpialidocious!
+--- submission output ---
+   It's... supercalifragilisticexpialidocious! Even though the sound of it is
+     something quite atrocious. If you say it loud enough you'll always sound
+                              precocious. Supercalifragilisticexpialidocious!
+---
+
+* COMPARISON TEST - public/right/Test27_pratchett_10_R/progRun-expected.out : fail
+--- expected output ---
+      Many
+    things
+went on at
+the Unseen
+University
+      and,
+regrettably
+  teaching
+ had to be
+    one of
+ them. The
+   faculty
+  had long
+       ago
+confronted
+ this fact
+   and had
+ perfected
+   various
+   devices
+       for
+  avoiding
+   it. But
+  this was
+ perfectly
+ all right
+because to
+  be fair,
+so had the
+ students.
+The system
+had worked
+quite well
+   and, as
+happens in
+      such
+cases, had
+  taken on
+the status
+      of a
+tradition.
+  Lectures
+   clearly
+      took
+    place,
+   because
+ they were
+down there
+    on the
+ timetable
+  in black
+and white.
+  The fact
+      that
+    no-one
+  attended
+    was an
+irrelevant
+detail. It
+       was
+occasionally
+maintained
+ that this
+meant that
+       the
+  lectures
+did not in
+      fact
+ happen at
+  all, but
+    no-one
+      ever
+  attended
+   them to
+  find out
+   if this
+ was true.
+Anyway, it
+was argued
+   (by the
+ Reader in
+    Woolly
+ Thinking,
+  which is
+like Fuzzy
+    Logic,
+ only less
+  so) that
+  lectures
+ had taken
+  place in
+  essence,
+   so that
+   was all
+    right,
+      too.
+      And,
+ therefore
+ education
+    at the
+University
+    mostly
+ worked by
+       the
+   age-old
+ method of
+ putting a
+    lot of
+     young
+ people in
+       the
+  vicinity
+  of a lot
+  of books
+and hoping
+      that
+ something
+would pass
+  from one
+    to the
+    other,
+ while the
+    actual
+     young
+people put
+themselves
+    in the
+  vicinity
+   of inns
+       and
+   taverns
+       for
+   exactly
+  the same
+   reason.
+--- submission output ---
+     Many
+   things
+  went on
+   at the
+   Unseen
+University
+     and,
+regrettably
+ teaching
+had to be
+   one of
+them. The
+  faculty
+ had long
+      ago
+confronted
+this fact
+  and had
+perfected
+  various
+  devices
+      for
+ avoiding
+  it. But
+ this was
+perfectly
+all right
+  because
+    to be
+ fair, so
+  had the
+students.
+      The
+   system
+      had
+   worked
+    quite
+well and,
+       as
+  happens
+  in such
+   cases,
+had taken
+   on the
+status of
+        a
+tradition.
+ Lectures
+  clearly
+     took
+   place,
+  because
+they were
+     down
+ there on
+      the
+timetable
+ in black
+      and
+   white.
+ The fact
+     that
+   no-one
+ attended
+   was an
+irrelevant
+  detail.
+   It was
+occasionally
+maintained
+that this
+    meant
+ that the
+ lectures
+  did not
+  in fact
+happen at
+ all, but
+   no-one
+     ever
+ attended
+  them to
+ find out
+  if this
+was true.
+  Anyway,
+   it was
+   argued
+  (by the
+Reader in
+   Woolly
+Thinking,
+ which is
+     like
+    Fuzzy
+   Logic,
+only less
+ so) that
+ lectures
+had taken
+ place in
+ essence,
+  so that
+  was all
+   right,
+     too.
+     And,
+therefore
+education
+   at the
+University
+   mostly
+worked by
+      the
+  age-old
+method of
+putting a
+   lot of
+    young
+people in
+      the
+ vicinity
+ of a lot
+ of books
+      and
+   hoping
+     that
+something
+    would
+pass from
+   one to
+      the
+   other,
+while the
+   actual
+    young
+   people
+      put
+themselves
+   in the
+ vicinity
+  of inns
+      and
+  taverns
+      for
+  exactly
+ the same
+  reason.
+---
+
+* COMPARISON TEST - public/right/Test28_poppins_10_R/progRun-expected.out : fail
+--- expected output ---
+   It's...
+supercalifragilisticexpialidocious!
+      Even
+though the
+  sound of
+     it is
+ something
+     quite
+atrocious.
+If you say
+   it loud
+    enough
+    you'll
+    always
+     sound
+precocious.
+Supercalifragilisticexpialidocious!
+--- submission output ---
+Exception in thread "main" java.lang.IllegalArgumentException: count is negative: -26
+	at java.base/java.lang.String.repeat(String.java:4662)
+	at TextAlignment.rightAlign(TextAlignment.java:107)
+	at TextAlignment.alignParagraph(TextAlignment.java:45)
+	at TextAlignment.main(TextAlignment.java:35)
+---
+
+9 out of 38 tests passed
