@@ -1,11 +1,22 @@
+//ATENCIÓN: HACER UN .ZIP
+// ==>  stacscheck--archive CS5001-p1.zip /cs/studres/CS5001/Coursework/p1-alignment/Tests
+/**
+ * TextAlignment is a utility program that reads a text file and prints its content 
+ * aligned according to a specified format: left, right, centre, or justify. 
+ * 
+ * The program supports word wrapping to fit a defined line width and handles 
+ * long words appropriately (including hyphenation in justified text). 
+ * Invalid input arguments or unsupported alignment types produce a usage message.
+ */
+
 import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
 
 public class TextAlignment {
     public static void main(String[] args) {
-
         int minArgs = 3;
+
         if (args.length < minArgs) {
             System.out.println("usage: java TextAlignment <filename> <alignmentType> <lineLength>");
             return;
@@ -58,17 +69,23 @@ public class TextAlignment {
     }
 
     /**
-     * Se recorren todas las palabras del párrafo y se agregan a una línea hasta alcanzar la longitud máxima (lineLength).
-     * Cuando la línea se llena, se imprime y se empieza una nueva.
-     * Todas las líneas comienzan desde el margen izquierdo, por lo que no se agregan espacios adicionales al inicio.
+     * Aligns a paragraph of text to the left within a specified line width.
+     * 
+     * Words are separated by spaces and placed sequentially on each line. 
+     * When a word does not fit in the current line, a new line is started. 
+     * No extra spaces are added at the end of lines.
+     *
+     * @param paragraph   the full text to be aligned
+     * @param lineLength  the maximum number of characters allowed per line
+     * @return a string containing the left-aligned text, 
+     *         with line breaks inserted where appropriate
      */
     private static String leftAlign(String paragraph, int lineLength) {
-        String[] words = paragraph.split("\\s+"); // separar por espacios
+        String[] words = paragraph.split("\\s+");
         StringBuilder alignedText = new StringBuilder();
         StringBuilder line = new StringBuilder();
 
         for (String word : words) {
-            // si la palabra no cabe en la línea actual, imprimir línea
             if (line.length() + word.length() + (line.length() > 0 ? 1 : 0) > lineLength) {
                 alignedText.append(line).append("\n");
                 line.setLength(0);
@@ -78,30 +95,37 @@ public class TextAlignment {
             line.append(word);
         }
 
-        // agregar la última línea
         if (line.length() > 0) {
             alignedText.append(line);
         }
 
         return alignedText.toString();
     }
-
 
     /**
-     * Se construyen las líneas igual que en la izquierda, pero antes de agregarlas al resultado se calculan los espacios necesarios al inicio:
-     * int spacesToAdd = lineLength - line.length();
-     * Estos espacios iniciales hacen que el texto quede alineado al margen derecho.
+     * Aligns a paragraph of text to the right within a specified line width.
+     * 
+     * Words are separated by spaces and placed sequentially on each line. 
+     * When a word does not fit in the current line, the line is printed 
+     * with leading spaces added to align the text to the right. 
+     * The last line is also right-aligned before returning the result.
+     *
+     * @param paragraph   the full text to be aligned
+     * @param lineLength  the maximum number of characters allowed per line
+     * @return a string containing the right-aligned text, 
+     *         with line breaks and appropriate leading spaces
      */
     private static String rightAlign(String paragraph, int lineLength) {
-        String[] words = paragraph.split("\\s+"); // separar por espacios
+        String[] words = paragraph.split("\\s+");
         StringBuilder alignedText = new StringBuilder();
         StringBuilder line = new StringBuilder();
 
         for (String word : words) {
             if (line.length() + word.length() + (line.length() > 0 ? 1 : 0) > lineLength) {
-                // calcular espacios al inicio para alinear a la derecha
                 int spacesToAdd = Math.max(0, lineLength - line.length());
-                for (int i = 0; i < spacesToAdd; i++) alignedText.append(' ');
+                for (int i = 0; i < spacesToAdd; i++) {
+                    alignedText.append(' ');
+                }
 
                 alignedText.append(line).append("\n");
                 line.setLength(0);
@@ -111,20 +135,29 @@ public class TextAlignment {
             line.append(word);
         }
 
-        // agregar la última línea
         if (line.length() > 0) {
             int spacesToAdd = Math.max(0, lineLength - line.length());
-            for (int i = 0; i < spacesToAdd; i++) alignedText.append(' ');
+            for (int i = 0; i < spacesToAdd; i++) {
+                alignedText.append(' ');
+            }
             alignedText.append(line);
         }
 
         return alignedText.toString();
     }
 
-
-    /** .
-     * Similar a la alineación derecha, pero los espacios se distribuyen solo al inicio de la línea para centrar el texto:
-     * int leftSpaces = (lineLength - line.length()) / 2;
+    /**
+     * Aligns a paragraph of text to the centre within a specified line width.
+     * 
+     * Words are separated by spaces and arranged sequentially on each line. 
+     * When a word does not fit in the current line, the line is printed 
+     * with equal (or nearly equal) spaces on both sides to achieve centred alignment. 
+     * If the padding is uneven, one extra space is added to the left side.
+     *
+     * @param paragraph   the full text to be aligned
+     * @param lineLength  the maximum number of characters allowed per line
+     * @return a string containing the centre-aligned text, 
+     *         with line breaks and appropriate left padding for centring
      */
     private static String centreAlign(String paragraph, int lineLength) {
         StringBuilder result = new StringBuilder();
@@ -133,12 +166,13 @@ public class TextAlignment {
 
         for (String word : words) {
             if (line.length() + word.length() + (line.length() > 0 ? 1 : 0) > lineLength) {
-                // calcular padding exacto de la línea actual
                 int totalPadding = lineLength - line.length();
-                int leftPadding = (totalPadding + 1) / 2; // añade 1 si es impar
-                for (int i = 0; i < leftPadding; i++) result.append(' ');
+                int leftPadding = (totalPadding + 1) / 2;
+                for (int i = 0; i < leftPadding; i++) {
+                    result.append(' ');
+                }
                 result.append(line).append('\n');
-                line.setLength(0); // limpiar línea
+                line.setLength(0);
             }
 
             if (line.length() > 0) {
@@ -150,20 +184,30 @@ public class TextAlignment {
         // última línea
         if (line.length() > 0) {
             int totalPadding = lineLength - line.length();
-            int leftPadding = (totalPadding + 1) / 2; // añadir espacio extra si es impar
-            for (int i = 0; i < leftPadding; i++) result.append(' ');
+            int leftPadding = (totalPadding + 1) / 2;
+            for (int i = 0; i < leftPadding; i++) {
+                result.append(' ');
+            } 
             result.append(line).append('\n');
         }
 
         return result.toString();
     }
 
-
     /**
-     * Se calcula el número de espacios necesarios para que la línea alcance lineLength.
-     * Se distribuyen equitativamente entre las palabras de la línea.
-     * Si hay espacios restantes (por división entera), se reparten uno a uno desde la izquierda hasta llenar la línea.
-     * Esto hace que la línea se vea alineada tanto a la izquierda como a la derecha.
+     * Justifies a paragraph of text within a specified line width.
+     * <p>
+     * Words are separated by spaces and distributed across lines so that 
+     * each line (except the last one) fills the full width as closely as possible. 
+     * If a word exceeds the remaining space on the current line, it may be 
+     * split with a hyphen and continued on the next line. The last line 
+     * is left-aligned by default.
+     * </p>
+     *
+     * @param paragraph   the full text to be justified
+     * @param lineLength  the maximum number of characters allowed per line
+     * @return a string containing the fully justified text, 
+     *         with line breaks and optional hyphenation for long words
      */
     private static String justifyAlign(String paragraph, int lineLength) {
         String[] words = paragraph.split("\\s+");
@@ -175,21 +219,18 @@ public class TextAlignment {
             while (!word.isEmpty()) {
                 int spaceLeft = lineLength - lineLengthSoFar - (lineWords.size() > 0 ? lineWords.size() : 0);
                 if (word.length() <= spaceLeft) {
-                    // la palabra cabe
                     lineWords.add(word);
                     lineLengthSoFar += word.length();
                     word = "";
                 } else if (spaceLeft > 1) {
-                    // cortar palabra al espacio disponible y añadir guion
                     String part = word.substring(0, spaceLeft - 1) + "-";
                     lineWords.add(part);
-                    // imprimir la línea actual
+
                     result.append(String.join(" ", lineWords)).append("\n");
                     lineWords.clear();
                     lineLengthSoFar = 0;
                     word = word.substring(spaceLeft - 1);
                 } else {
-                    // espacio restante muy pequeño, imprimir línea y empezar nueva
                     result.append(String.join(" ", lineWords)).append("\n");
                     lineWords.clear();
                     lineLengthSoFar = 0;
@@ -197,13 +238,11 @@ public class TextAlignment {
             }
         }
 
-        // última línea -> izquierda
         if (!lineWords.isEmpty()) {
             result.append(String.join(" ", lineWords));
         }
 
         return result.toString();
     }
-
 
 }
