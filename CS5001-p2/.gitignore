@@ -1,5 +1,5 @@
 # Ignore the coursework PDF
-/CS5001_P2_OO-Testing.pdf
+CS5001_P2_OO-Testing.pdf
 # === Java build artifacts ===
 *.class
 *.jar
