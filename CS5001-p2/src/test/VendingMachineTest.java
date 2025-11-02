@@ -202,4 +202,45 @@ public class VendingMachineTest {
         assertEquals(0, vm.getNumberOfSales("B1"));
         assertEquals(2, vm.getNumberOfProducts());
     }
+
+    @Test
+    void VendingMachine_AddItemStopsAtLimit() throws Exception {
+        IVendingMachine vm = new VendingMachine();
+        IVendingMachineProduct p = new VendingMachineProduct("A1", "Nuts");
+        vm.registerProduct(p);
+
+        for (int i = 0; i < 10; i++) {
+            vm.addItem("A1");
+        }
+
+        assertEquals(10, vm.getNumberOfItems("A1"));
+    }
+
+    @Test
+    void VendingMachine_AddItemBeyondLimitThrowsException() throws Exception {
+        IVendingMachine vm = new VendingMachine();
+        IVendingMachineProduct p = new VendingMachineProduct("A1", "Nuts");
+        vm.registerProduct(p);
+
+        for (int i = 0; i < 10; i++) {
+            vm.addItem("A1");
+        }
+
+        assertThrows(IllegalStateException.class, () -> vm.addItem("A1"));
+    }
+
+    void VendingMachine_CustomLimitWorksCorrectly() throws Exception {
+    VendingMachine vm = new VendingMachine(5);
+    IVendingMachineProduct p = new VendingMachineProduct("A1", "Nuts");
+    vm.registerProduct(p);
+
+    for (int i = 0; i < 5; i++) {
+        vm.addItem("A1");
+    }
+
+    assertEquals(5, vm.getNumberOfItems("A1"));
+
+    assertThrows(IllegalStateException.class, () -> vm.addItem("A1"));
+}
+
 }

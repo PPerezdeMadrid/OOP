@@ -9,11 +9,13 @@ import interfaces.IProductRecord;
  *
  */
 public class ProductRecord implements IProductRecord {
-
     @Override
-    public IVendingMachineProduct getProduct() {
-        return this.vendingMachineProduct;
+        public IVendingMachineProduct getProduct() {
+            return this.vendingMachineProduct;
     }
+    private IVendingMachineProduct vendingMachineProduct;
+    private int numberAvailable;
+    private int numberOfSales;
 
     /* 
     * Constructs a ProductRecord for the given vending machine product.
@@ -24,10 +26,6 @@ public class ProductRecord implements IProductRecord {
         this.numberOfSales = 0;
 
     }
-
-    private IVendingMachineProduct vendingMachineProduct;
-    private int numberAvailable;
-    private int numberOfSales;
 
     /*
     * Getter for the product this record represents.
@@ -51,10 +49,9 @@ public class ProductRecord implements IProductRecord {
 
     @Override
     public void addItem() {
-        // TODO Auto-generated method stub
         this.numberAvailable++;
-        //System.out.println("Item added");
     }
+
 
     @Override
     public void buyItem() throws ProductUnavailableException {

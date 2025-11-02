@@ -141,5 +141,5 @@ public class ProductRecordTest {
         r.addItem();
         assertEquals(1, r.getNumberAvailable());
     }
-
+    
 }

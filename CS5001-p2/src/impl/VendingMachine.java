@@ -16,12 +16,25 @@ import interfaces.IProductRecord;
  */
 public class VendingMachine implements IVendingMachine {
     private final Map<String, IProductRecord> records;
+    private final int maxItemsPerProduct;
+    private static final int DEFAULT_MAX_ITEMS = 10;
+
+
+    /**
+     * Constructs an empty vending machine.
+     */
+    public VendingMachine(int maxItemsPerProduct) {
+        this.records = new HashMap<>();
+        this.maxItemsPerProduct= maxItemsPerProduct; // default limit = 10
+    }
+    
 
     /**
      * Constructs an empty vending machine.
      */
     public VendingMachine() {
         this.records = new HashMap<>();
+        this.maxItemsPerProduct=DEFAULT_MAX_ITEMS; // default limit = 10
     }
 
     @Override
@@ -53,9 +66,15 @@ public class VendingMachine implements IVendingMachine {
     public void addItem(String laneCode) throws LaneCodeNotRegisteredException {
         // TODO Auto-generated method stub
         IProductRecord record = records.get(laneCode);
-
+        
         if (record == null) {
             throw new LaneCodeNotRegisteredException();
+        }
+
+        if (record.getNumberAvailable() >= this.maxItemsPerProduct) {
+            throw new IllegalStateException(
+                "Cannot add more items: reached maximum of " + this.maxItemsPerProduct + " for lane " + laneCode
+            );
         }
 
         record.addItem();

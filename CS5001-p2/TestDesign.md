@@ -67,6 +67,9 @@ Using arrays or matrices would make the implementation much more complex. Arrays
 18. Allows re-registering a product after it has been unregistered.
 19. Maintains consistent totals after mixed add and buy operations.
 20. Handles multiple lanes independently without interference.
+21. Stops adding items when reaching the maximum stock limit. AÑADIR AL WORD PASS
+22. Throws IllegalStateException when trying to add items beyond the stock limit.AÑADIR AL WORD PASS
+23. Works correctly with a custom stock limit (e.g. limit of 5 items). AÑADIR AL WORD FAILED
 
 ## Factory.java
 The factory class follows the Singleton pattern, ensuring that only one instance of `Factory` exists.
