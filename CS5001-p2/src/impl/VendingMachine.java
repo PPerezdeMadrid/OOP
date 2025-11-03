@@ -17,24 +17,25 @@ import interfaces.IProductRecord;
 public class VendingMachine implements IVendingMachine {
     private final Map<String, IProductRecord> records;
     private final int maxItemsPerProduct;
-    private static final int DEFAULT_MAX_ITEMS = 10;
-
+    /**
+     * Maximum amount of items per products.
+     */
+    public static final int DEFAULT_MAX_ITEMS = 10;
 
     /**
      * Constructs an empty vending machine.
+     * @param maxItemsPerProduct Maximum amount of items permitted per product (physical restriction of the Vending Machine)
      */
     public VendingMachine(int maxItemsPerProduct) {
         this.records = new HashMap<>();
-        this.maxItemsPerProduct= maxItemsPerProduct; // default limit = 10
+        this.maxItemsPerProduct = maxItemsPerProduct;
     }
-    
-
     /**
      * Constructs an empty vending machine.
      */
     public VendingMachine() {
         this.records = new HashMap<>();
-        this.maxItemsPerProduct=DEFAULT_MAX_ITEMS; // default limit = 10
+        this.maxItemsPerProduct = DEFAULT_MAX_ITEMS;
     }
 
     @Override
@@ -66,7 +67,6 @@ public class VendingMachine implements IVendingMachine {
     public void addItem(String laneCode) throws LaneCodeNotRegisteredException {
         // TODO Auto-generated method stub
         IProductRecord record = records.get(laneCode);
-        
         if (record == null) {
             throw new LaneCodeNotRegisteredException();
         }
@@ -106,7 +106,7 @@ public class VendingMachine implements IVendingMachine {
         // return 0;
         int total = 0;
         for (IProductRecord record : records.values()) {
-            total += record.getNumberAvailable(); 
+            total += record.getNumberAvailable();
         }
         return total;
     }
@@ -154,6 +154,4 @@ public class VendingMachine implements IVendingMachine {
 
         return mostPopular.getProduct();
     }
-    
-
 }

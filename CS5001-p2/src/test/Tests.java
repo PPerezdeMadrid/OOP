@@ -24,7 +24,7 @@ public class Tests {
      // ==== Factory TESTS ====
 
     @Test
-    void factory_sameInstance() {
+    void factorySameInstance() {
         IFactory f1 = Factory.getInstance();
         IFactory f2 = Factory.getInstance();
 
@@ -35,13 +35,13 @@ public class Tests {
      * This checks that the factory was able to call a sensible constructor to get a non-null instance of IVendingMachineProduct.
      */
    @Test
-    public void factory_vendingMachineProductNotNull() {
+    public void factoryVendingMachineProductNotNull() {
         IVendingMachineProduct vendingMachineProduct = Factory.getInstance().makeVendingMachineProduct("A1", "Haggis Crisps");
         assertNotNull(vendingMachineProduct);
     }
 
     @Test
-    void Factory_CreatesNonNullProductRecord() {
+    void factoryCreatesNonNullProductRecord() {
         IFactory factory = Factory.getInstance();
         IVendingMachineProduct product = factory.makeVendingMachineProduct("A1", "ChocoBoom");
         IProductRecord record = factory.makeProductRecord(product);
@@ -49,21 +49,21 @@ public class Tests {
     }
 
     @Test
-    void Factory_CreatesNonNullVendingMachine() {
+    void factoryCreatesNonNullVendingMachine() {
         IFactory factory = Factory.getInstance();
         IVendingMachine vm = factory.makeVendingMachine();
         assertNotNull(vm);
     }
 
     @Test
-    void Factory_CreatesCorrectTypeVendingMachineProduct() {
+    void factoryCreatesCorrectTypeVendingMachineProduct() {
         IFactory factory = Factory.getInstance();
         IVendingMachineProduct product = factory.makeVendingMachineProduct("A1", "ChocoBoom");
         assertTrue(product instanceof VendingMachineProduct);
     }
 
     @Test
-    void Factory_CreatesCorrectTypeProductRecord() {
+    void factoryCreatesCorrectTypeProductRecord() {
         IFactory factory = Factory.getInstance();
         IVendingMachineProduct product = factory.makeVendingMachineProduct("A1", "ChocoBoom");
         IProductRecord record = factory.makeProductRecord(product);
@@ -71,14 +71,14 @@ public class Tests {
     }
 
     @Test
-    void Factory_CreatesCorrectTypeVendingMachine() {
+    void factoryCreatesCorrectTypeVendingMachine() {
         IFactory factory = Factory.getInstance();
         IVendingMachine vm = factory.makeVendingMachine();
         assertTrue(vm instanceof VendingMachine);
     }
 
     @Test
-    void Factory_ReturnsDifferentVendingMachineProductInstances() {
+    void factoryReturnsDifferentVendingMachineProductInstances() {
         IFactory factory = Factory.getInstance();
         IVendingMachineProduct p1 = factory.makeVendingMachineProduct("A1", "ChocoBoom");
         IVendingMachineProduct p2 = factory.makeVendingMachineProduct("B1", "Water");
@@ -86,7 +86,7 @@ public class Tests {
     }
 
     @Test
-    void Factory_ReturnsDifferentProductRecordInstances() {
+    void factoryReturnsDifferentProductRecordInstances() {
         IFactory factory = Factory.getInstance();
         IVendingMachineProduct p = factory.makeVendingMachineProduct("A1", "ChocoBoom");
         IProductRecord r1 = factory.makeProductRecord(p);
@@ -95,11 +95,10 @@ public class Tests {
     }
 
     @Test
-    void Factory_ReturnsDifferentVendingMachineInstances() {
+    void factoryReturnsDifferentVendingMachineInstances() {
         IFactory factory = Factory.getInstance();
         IVendingMachine vm1 = factory.makeVendingMachine();
         IVendingMachine vm2 = factory.makeVendingMachine();
         assertNotSame(vm1, vm2);
-    } 
-   
+    }
 }

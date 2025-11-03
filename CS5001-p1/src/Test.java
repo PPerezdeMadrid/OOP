@@ -1,4 +1,7 @@
-import java.io.*;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
+
 
 public class Test {
     public static void main(String[] args) throws Exception {

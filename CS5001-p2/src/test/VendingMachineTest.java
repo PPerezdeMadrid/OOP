@@ -1,7 +1,8 @@
 package test;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import impl.ProductRecord;
 import impl.VendingMachineProduct;
@@ -16,68 +17,70 @@ import exceptions.ProductUnavailableException;
 
 public class VendingMachineTest {
 
+    private static final int CUSTOM_LIMIT = 5;
+    private static final int DEFAULT_LIMIT = VendingMachine.DEFAULT_MAX_ITEMS;
     @Test
-    void VendingMachine_RegisterProductSuccess() throws Exception {
+    void vendingMachineRegisterProductSuccess() throws Exception {
         IVendingMachine vm = new VendingMachine();
-        IVendingMachineProduct p = new VendingMachineProduct("A1", "ChocoBoom");
+        IVendingMachineProduct p = new VendingMachineProduct("A1", "chocoBoom");
         vm.registerProduct(p);
         assertEquals(1, vm.getNumberOfProducts());
     }
 
     @Test
-    void VendingMachine_RegisterDuplicateThrows() throws Exception {
+    void vendingMachineRegisterDuplicateThrows() throws Exception {
         IVendingMachine vm = new VendingMachine();
-        IVendingMachineProduct p = new VendingMachineProduct("A1", "ChocoBoom");
+        IVendingMachineProduct p = new VendingMachineProduct("A1", "chocoBoom");
         vm.registerProduct(p);
         assertThrows(LaneCodeAlreadyInUseException.class, () -> vm.registerProduct(p));
     }
 
     @Test
-    void VendingMachine_UnregisterProductSuccess() throws Exception {
+    void vendingMachineUnregisterProductSuccess() throws Exception {
         IVendingMachine vm = new VendingMachine();
-        IVendingMachineProduct p = new VendingMachineProduct("A1", "ChocoBoom");
+        IVendingMachineProduct p = new VendingMachineProduct("A1", "chocoBoom");
         vm.registerProduct(p);
         vm.unregisterProduct(p);
         assertEquals(0, vm.getNumberOfProducts());
     }
 
     @Test
-    void VendingMachine_UnregisterUnknownThrows() {
+    void vendingMachineUnregisterUnknownThrows() {
         IVendingMachine vm = new VendingMachine();
-        IVendingMachineProduct p = new VendingMachineProduct("A1", "ChocoBoom");
+        IVendingMachineProduct p = new VendingMachineProduct("A1", "chocoBoom");
         assertThrows(LaneCodeNotRegisteredException.class, () -> vm.unregisterProduct(p));
     }
 
     @Test
-    void VendingMachine_AddItemSuccess() throws Exception {
+    void vendingMachineAddItemSuccess() throws Exception {
         IVendingMachine vm = new VendingMachine();
-        IVendingMachineProduct p = new VendingMachineProduct("A1", "ChocoBoom");
+        IVendingMachineProduct p = new VendingMachineProduct("A1", "chocoBoom");
         vm.registerProduct(p);
         vm.addItem("A1");
         assertEquals(1, vm.getNumberOfItems("A1"));
     }
 
     @Test
-    void VendingMachine_AddItemToUnknownLaneThrows() {
+    void vendingMachineAddItemToUnknownLaneThrows() {
         IVendingMachine vm = new VendingMachine();
         assertThrows(LaneCodeNotRegisteredException.class, () -> vm.addItem("A1"));
     }
 
     @Test
-    void VendingMachine_AddMultipleItemsSameLane() throws Exception {
+    void vendingMachineAddMultipleItemsSameLane() throws Exception {
         IVendingMachine vm = new VendingMachine();
-        IVendingMachineProduct p = new VendingMachineProduct("A1", "ChocoBoom");
+        IVendingMachineProduct p = new VendingMachineProduct("A1", "chocoBoom");
         vm.registerProduct(p);
         vm.addItem("A1");
         vm.addItem("A1");
         vm.addItem("A1");
-        assertEquals(3, vm.getNumberOfItems("A1"));
+        assertEquals(NUMBER_THREE, vm.getNumberOfItems("A1"));
     }
 
     @Test
-    void VendingMachine_BuyItemSuccess() throws Exception {
+    void vendingMachineBuyItemSuccess() throws Exception {
         IVendingMachine vm = new VendingMachine();
-        IVendingMachineProduct p = new VendingMachineProduct("A1", "ChocoBoom");
+        IVendingMachineProduct p = new VendingMachineProduct("A1", "chocoBoom");
         vm.registerProduct(p);
         vm.addItem("A1");
         vm.buyItem("A1");
@@ -85,53 +88,53 @@ public class VendingMachineTest {
     }
 
     @Test
-    void VendingMachine_BuyFromUnknownLaneThrows() {
+    void vendingMachineBuyFromUnknownLaneThrows() {
         IVendingMachine vm = new VendingMachine();
         assertThrows(LaneCodeNotRegisteredException.class, () -> vm.buyItem("A1"));
     }
 
     @Test
-    void VendingMachine_BuyWithoutStockThrows() throws Exception {
+    void vendingMachineBuyWithoutStockThrows() throws Exception {
         IVendingMachine vm = new VendingMachine();
-        IVendingMachineProduct p = new VendingMachineProduct("A1", "ChocoBoom");
+        IVendingMachineProduct p = new VendingMachineProduct("A1", "chocoBoom");
         vm.registerProduct(p);
         assertThrows(ProductUnavailableException.class, () -> vm.buyItem("A1"));
     }
 
     @Test
-    void VendingMachine_GetNumberOfProductsCorrect() throws Exception {
+    void vendingMachineGetNumberOfProductsCorrect() throws Exception {
         IVendingMachine vm = new VendingMachine();
-        vm.registerProduct(new VendingMachineProduct("A1", "ChocoBoom"));
-        vm.registerProduct(new VendingMachineProduct("B1", "McVities"));
+        vm.registerProduct(new VendingMachineProduct("A1", "chocoBoom"));
+        vm.registerProduct(new VendingMachineProduct("B1", "mcVities"));
         assertEquals(2, vm.getNumberOfProducts());
     }
 
     @Test
-    void VendingMachine_GetTotalNumberOfItemsCorrect() throws Exception {
+    void vendingMachineGetTotalNumberOfItemsCorrect() throws Exception {
         IVendingMachine vm = new VendingMachine();
-        IVendingMachineProduct p1 = new VendingMachineProduct("A1", "ChocoBoom");
-        IVendingMachineProduct p2 = new VendingMachineProduct("B1", "McVities");
+        IVendingMachineProduct p1 = new VendingMachineProduct("A1", "chocoBoom");
+        IVendingMachineProduct p2 = new VendingMachineProduct("B1", "mcVities");
         vm.registerProduct(p1);
         vm.registerProduct(p2);
         vm.addItem("A1");
         vm.addItem("A1");
         vm.addItem("B1");
-        assertEquals(3, vm.getTotalNumberOfItems());
+        assertEquals(NUMBER_THREE, vm.getTotalNumberOfItems());
     }
 
     @Test
-    void VendingMachine_GetNumberOfItemsForLane() throws Exception {
+    void vendingMachineGetNumberOfItemsForLane() throws Exception {
         IVendingMachine vm = new VendingMachine();
-        IVendingMachineProduct p = new VendingMachineProduct("A1", "ChocoBoom");
+        IVendingMachineProduct p = new VendingMachineProduct("A1", "chocoBoom");
         vm.registerProduct(p);
         vm.addItem("A1");
         assertEquals(1, vm.getNumberOfItems("A1"));
     }
 
     @Test
-    void VendingMachine_GetNumberOfSalesForLane() throws Exception {
+    void vendingMachineGetNumberOfSalesForLane() throws Exception {
         IVendingMachine vm = new VendingMachine();
-        IVendingMachineProduct p = new VendingMachineProduct("A1", "ChocoBoom");
+        IVendingMachineProduct p = new VendingMachineProduct("A1", "chocoBoom");
         vm.registerProduct(p);
         vm.addItem("A1");
         vm.buyItem("A1");
@@ -139,10 +142,10 @@ public class VendingMachineTest {
     }
 
     @Test
-    void VendingMachine_SalesIndependentPerProduct() throws Exception {
+    void vendingMachineSalesIndependentPerProduct() throws Exception {
         IVendingMachine vm = new VendingMachine();
-        IVendingMachineProduct p1 = new VendingMachineProduct("A1", "ChocoBoom");
-        IVendingMachineProduct p2 = new VendingMachineProduct("B1", "McVities");
+        IVendingMachineProduct p1 = new VendingMachineProduct("A1", "chocoBoom");
+        IVendingMachineProduct p2 = new VendingMachineProduct("B1", "mcVities");
         vm.registerProduct(p1);
         vm.registerProduct(p2);
         vm.addItem("A1"); vm.addItem("B1");
@@ -152,27 +155,27 @@ public class VendingMachineTest {
     }
 
     @Test
-    void VendingMachine_GetMostPopularReturnsCorrectProduct() throws Exception {
+    void vendingMachineGetMostPopularReturnsCorrectProduct() throws Exception {
         IVendingMachine vm = new VendingMachine();
-        IVendingMachineProduct ChocoBoom = new VendingMachineProduct("A1", "ChocoBoom");
-        IVendingMachineProduct McVities = new VendingMachineProduct("B1", "McVities");
-        vm.registerProduct(ChocoBoom);
-        vm.registerProduct(McVities);
+        IVendingMachineProduct chocoBoom = new VendingMachineProduct("A1", "chocoBoom");
+        IVendingMachineProduct mcVities = new VendingMachineProduct("B1", "mcVities");
+        vm.registerProduct(chocoBoom);
+        vm.registerProduct(mcVities);
         vm.addItem("A1"); vm.addItem("B1");
         vm.buyItem("A1");
-        assertEquals(ChocoBoom, vm.getMostPopular());
+        assertEquals(chocoBoom, vm.getMostPopular());
     }
 
     @Test
-    void VendingMachine_GetMostPopularThrowsWhenEmpty() {
+    void vendingMachineGetMostPopularThrowsWhenEmpty() {
         IVendingMachine vm = new VendingMachine();
         assertThrows(LaneCodeNotRegisteredException.class, vm::getMostPopular);
     }
 
     @Test
-    void VendingMachine_ReRegisterAfterUnregisterAllowed() throws Exception {
+    void vendingMachineReRegisterAfterUnregisterAllowed() throws Exception {
         IVendingMachine vm = new VendingMachine();
-        IVendingMachineProduct p = new VendingMachineProduct("A1", "ChocoBoom");
+        IVendingMachineProduct p = new VendingMachineProduct("A1", "chocoBoom");
         vm.registerProduct(p);
         vm.unregisterProduct(p);
         vm.registerProduct(p);
@@ -180,9 +183,9 @@ public class VendingMachineTest {
     }
 
     @Test
-    void VendingMachine_TotalsConsistentAfterMixedOps() throws Exception {
+    void vendingMachineTotalsConsistentAfterMixedOps() throws Exception {
         IVendingMachine vm = new VendingMachine();
-        IVendingMachineProduct p = new VendingMachineProduct("A1", "ChocoBoom");
+        IVendingMachineProduct p = new VendingMachineProduct("A1", "chocoBoom");
         vm.registerProduct(p);
         vm.addItem("A1"); vm.addItem("A1");
         vm.buyItem("A1");
@@ -190,10 +193,10 @@ public class VendingMachineTest {
     }
 
     @Test
-    void VendingMachine_HandlesMultipleLanesIndependently() throws Exception {
+    void vendingMachineHandlesMultipleLanesIndependently() throws Exception {
         IVendingMachine vm = new VendingMachine();
-        IVendingMachineProduct p1 = new VendingMachineProduct("A1", "ChocoBoom");
-        IVendingMachineProduct p2 = new VendingMachineProduct("B1", "McVities");
+        IVendingMachineProduct p1 = new VendingMachineProduct("A1", "chocoBoom");
+        IVendingMachineProduct p2 = new VendingMachineProduct("B1", "mcVities");
         vm.registerProduct(p1);
         vm.registerProduct(p2);
         vm.addItem("A1"); vm.addItem("A1"); vm.addItem("B1");
@@ -204,41 +207,41 @@ public class VendingMachineTest {
     }
 
     @Test
-    void VendingMachine_AddItemStopsAtLimit() throws Exception {
+    void vendingMachineAddItemStopsAtLimit() throws Exception {
         IVendingMachine vm = new VendingMachine();
         IVendingMachineProduct p = new VendingMachineProduct("A1", "Nuts");
         vm.registerProduct(p);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < CUSTOM_LIMIT; i++) {
             vm.addItem("A1");
         }
 
-        assertEquals(10, vm.getNumberOfItems("A1"));
+        assertEquals(CUSTOM_LIMIT, vm.getNumberOfItems("A1"));
     }
 
     @Test
-    void VendingMachine_AddItemBeyondLimitThrowsException() throws Exception {
+    void vendingMachineAddItemBeyondLimitThrowsException() throws Exception {
         IVendingMachine vm = new VendingMachine();
         IVendingMachineProduct p = new VendingMachineProduct("A1", "Nuts");
         vm.registerProduct(p);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < DEFAULT_LIMIT; i++) {
             vm.addItem("A1");
         }
 
         assertThrows(IllegalStateException.class, () -> vm.addItem("A1"));
     }
 
-    void VendingMachine_CustomLimitWorksCorrectly() throws Exception {
-    VendingMachine vm = new VendingMachine(5);
+    void vendingMachineCustomLimitWorksCorrectly() throws Exception {
+    VendingMachine vm = new VendingMachine(CUSTOM_LIMIT);
     IVendingMachineProduct p = new VendingMachineProduct("A1", "Nuts");
     vm.registerProduct(p);
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < CUSTOM_LIMIT; i++) {
         vm.addItem("A1");
     }
 
-    assertEquals(5, vm.getNumberOfItems("A1"));
+    assertEquals(CUSTOM_LIMIT, vm.getNumberOfItems("A1"));
 
     assertThrows(IllegalStateException.class, () -> vm.addItem("A1"));
 }

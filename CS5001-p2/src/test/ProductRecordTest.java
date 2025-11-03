@@ -1,7 +1,9 @@
 package test;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 import impl.ProductRecord;
 import impl.VendingMachineProduct;
@@ -10,9 +12,11 @@ import interfaces.IVendingMachineProduct;
 import exceptions.ProductUnavailableException;
 
 public class ProductRecordTest {
+    private static final int NUMBER_FIVE = 5;
+    private static final int NUMBER_THREE = 3;
 
     @Test
-    void ProductRecord_InitialValuesAreZero() {
+    void productRecordInitialValuesAreZero() {
         IVendingMachineProduct p = new VendingMachineProduct("A1", "ChocoBoom");
         IProductRecord record = new ProductRecord(p);
 
@@ -21,7 +25,7 @@ public class ProductRecordTest {
     }
 
     @Test
-    void ProductRecord_AddItemIncreasesAvailable() {
+    void productRecordAddItemIncreasesAvailable() {
         IVendingMachineProduct p = new VendingMachineProduct("A1", "ChocoBoom");
         ProductRecord record = new ProductRecord(p);
         record.addItem();
@@ -31,16 +35,16 @@ public class ProductRecordTest {
     }
 
     @Test
-    void ProductRecord_AddItemMultipleTimesIncreasesAvailable() {
+    void productRecordAddItemMultipleTimesIncreasesAvailable() {
         IProductRecord r = new ProductRecord(new VendingMachineProduct("A1", "Cola"));
         r.addItem();
         r.addItem();
         r.addItem();
-        assertEquals(3, r.getNumberAvailable());
+        assertEquals(NUMBER_THREE, r.getNumberAvailable());
     }
 
     @Test
-    void ProductRecord_BuyItemReducesStockAndIncreasesSales() throws Exception {
+    void productRecordBuyItemReducesStockAndIncreasesSales() throws Exception {
         IVendingMachineProduct p = new VendingMachineProduct("A1", "ChocoBoom");
         ProductRecord record = new ProductRecord(p);
         record.addItem();
@@ -51,7 +55,7 @@ public class ProductRecordTest {
     }
 
     @Test
-    void ProductRecord_BuyItemWithoutStockThrows() {
+    void productRecordBuyItemWithoutStockThrows() {
         IVendingMachineProduct p = new VendingMachineProduct("A1", "ChocoBoom");
         ProductRecord record = new ProductRecord(p);
 
@@ -59,16 +63,21 @@ public class ProductRecordTest {
     }
 
     @Test
-    void ProductRecord_MultipleBuysUpdateCountsCorrectly() throws Exception {
+    void productRecordMultipleBuysUpdateCountsCorrectly() throws Exception {
         IProductRecord r = new ProductRecord(new VendingMachineProduct("A1", "Cola"));
-        for (int i = 0; i < 5; i++) r.addItem();
-        for (int i = 0; i < 3; i++) r.buyItem();
+        for (int i = 0; i < NUMBER_FIVE; i++) {
+            r.addItem();
+        }
+        for (int i = 0; i < NUMBER_THREE; i++) {
+            r.buyItem();
+        }
+
         assertEquals(2, r.getNumberAvailable());
-        assertEquals(3, r.getNumberOfSales());
+        assertEquals(NUMBER_THREE, r.getNumberOfSales());
     }
 
     @Test
-    void ProductRecord_GetProductReturnsSameInstance() {
+    void productRecordGetProductReturnsSameInstance() {
         IVendingMachineProduct p = new VendingMachineProduct("A1", "ChocoBoom");
         IProductRecord record = new ProductRecord(p);
 
@@ -76,7 +85,7 @@ public class ProductRecordTest {
     }
 
     @Test
-    void ProductRecord_NoNegativeStockAfterBuys() throws Exception {
+    void productRecordNoNegativeStockAfterBuys() throws Exception {
         IProductRecord r = new ProductRecord(new VendingMachineProduct("A1", "Cola"));
         r.addItem();
         r.buyItem();
@@ -84,25 +93,25 @@ public class ProductRecordTest {
     }
 
     @Test
-    void ProductRecord_SalesCountAccurateAfterAddBuyCycles() throws Exception {
+    void productRecordSalesCountAccurateAfterAddBuyCycles() throws Exception {
         IProductRecord r = new ProductRecord(new VendingMachineProduct("A1", "Cola"));
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < NUMBER_THREE; i++) {
             r.addItem();
             r.buyItem();
         }
-        assertEquals(3, r.getNumberOfSales());
+        assertEquals(NUMBER_THREE, r.getNumberOfSales());
         assertEquals(0, r.getNumberAvailable());
     }
 
     @Test
-    void ProductRecord_StockCountCorrectAfterMixedOps() throws Exception {
+    void productRecordStockCountCorrectAfterMixedOps() throws Exception {
         IProductRecord r = new ProductRecord(new VendingMachineProduct("A1", "Cola"));
         r.addItem(); r.addItem(); r.buyItem(); r.addItem();
         assertEquals(2, r.getNumberAvailable());
     }
 
     @Test
-    void ProductRecord_IndependentRecordsWorkSeparately() throws Exception {
+    void productRecordIndependentRecordsWorkSeparately() throws Exception {
         IProductRecord r1 = new ProductRecord(new VendingMachineProduct("A1", "Cola"));
         IProductRecord r2 = new ProductRecord(new VendingMachineProduct("B1", "Juice"));
         r1.addItem(); r1.buyItem();
@@ -111,21 +120,21 @@ public class ProductRecordTest {
     }
 
     @Test
-    void ProductRecord_AddAfterSalesWorks() throws Exception {
+    void productRecordAddAfterSalesWorks() throws Exception {
         IProductRecord r = new ProductRecord(new VendingMachineProduct("A1", "Cola"));
         r.addItem(); r.buyItem(); r.addItem();
         assertEquals(1, r.getNumberAvailable());
     }
 
     @Test
-    void ProductRecord_ProductReferenceUnchanged() {
+    void productRecordProductReferenceUnchanged() {
         IVendingMachineProduct p = new VendingMachineProduct("A1", "Cola");
         IProductRecord r = new ProductRecord(p);
         assertSame(p, r.getProduct());
     }
 
     @Test
-    void ProductRecord_BuyAffectsOnlyThisRecord() throws Exception {
+    void productRecordBuyAffectsOnlyThisRecord() throws Exception {
         IProductRecord r1 = new ProductRecord(new VendingMachineProduct("A1", "Cola"));
         IProductRecord r2 = new ProductRecord(new VendingMachineProduct("B1", "Water"));
         r1.addItem(); r1.buyItem();
@@ -134,12 +143,11 @@ public class ProductRecordTest {
     }
 
     @Test
-    void ProductRecord_AddBuyRestoresStockBalance() throws Exception {
+    void productRecordAddBuyRestoresStockBalance() throws Exception {
         IProductRecord r = new ProductRecord(new VendingMachineProduct("A1", "Cola"));
         r.addItem();
         r.buyItem();
         r.addItem();
         assertEquals(1, r.getNumberAvailable());
     }
-    
 }
