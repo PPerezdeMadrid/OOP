@@ -1,5 +1,5 @@
 
-SRC_DIR=src
+SRC_DIR=.
 TEST_DIR=test
 BIN_DIR=bin
 

@@ -1,17 +1,30 @@
+package view;
+
 import javax.swing.*;
 import java.awt.*;
+import model.ModelListener;
+import model.ModelMandelbrot;
+
 
 public class MandelbrotPanel extends JPanel implements ModelListener {
 
     private final ModelMandelbrot model;
+    private Point dragStart;
+    private Point dragEnd;
 
     public MandelbrotPanel(ModelMandelbrot model) {
         this.model = model;
-        // Nos registramos como listener del modelo
         this.model.addListener(this);
 
-        // Pedimos el tamaño preferido según el modelo
         setPreferredSize(new Dimension(model.getWidth(), model.getHeight()));
+    }
+
+    public void setDragStart(Point p) {
+        this.dragStart = p; 
+    }
+
+    public void setDragEnd(Point p) { 
+        this.dragEnd = p;
     }
 
     @Override
@@ -27,9 +40,7 @@ public class MandelbrotPanel extends JPanel implements ModelListener {
         int width = data[0].length;
         int maxIter = model.getMaxIterations();
 
-        // Versión simple en blanco y negro:
-        // - Negro si está "dentro" (iter >= maxIter)
-        // - Blanco si "escapa"
+        
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 int iter = data[y][x];
@@ -43,11 +54,22 @@ public class MandelbrotPanel extends JPanel implements ModelListener {
                 g.fillRect(x, y, 1, 1);
             }
         }
+
+        // Draw zoom rectangle if the user is dragging
+        if (dragStart != null && dragEnd != null) {
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.GREEN);
+            int x = Math.min(dragStart.x, dragEnd.x);
+            int y = Math.min(dragStart.y, dragEnd.y);
+            int w = Math.abs(dragStart.x - dragEnd.x);
+            int h = Math.abs(dragStart.y - dragEnd.y);
+            g2d.drawRect(x, y, w, h);
+        }
+
     }
 
     @Override
     public void modelChanged() {
-        // Cuando el modelo cambia, repintamos
         repaint();
     }
 }

@@ -1,22 +1,44 @@
+package view;
+
 import javax.swing.*;
+import model.ModelMandelbrot;
+import controller.ControllerMandelbrot;
+import java.awt.BorderLayout;
+
 
 public class MandelbrotApp {
 
     public static void main(String[] args) {
-        // Aseguramos que todo el código de Swing se ejecute en el hilo de eventos
+
         SwingUtilities.invokeLater(() -> {
-            // Creamos el modelo (800x800 píxeles)
+
             ModelMandelbrot model = new ModelMandelbrot(800, 800);
+            MandelbrotPanel mandelbrotPanel = new MandelbrotPanel(model);
 
-            // Creamos el panel que dibuja el fractal
-            MandelbrotPanel panel = new MandelbrotPanel(model);
+            // Create control panel
+            ControlPanelMandelbrot controlPanel = 
+                    new ControlPanelMandelbrot(model.getMaxIterations());
 
-            // Creamos la ventana
-            JFrame frame = new JFrame("Mandelbrot - Versión básica");
+
+            // Create controller with panel + controls
+            new ControllerMandelbrot(
+                    model,
+                    mandelbrotPanel,
+                    controlPanel.getIterationSpinner(),
+                    controlPanel.getResetButton(),
+                    controlPanel.getUndoButton(),
+                    controlPanel.getRedoButton()
+                );
+
+            JFrame frame = new JFrame("Mandelbrot Explorer");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.getContentPane().add(panel);
-            frame.pack();                    // Ajusta el tamaño a lo que pide el panel
-            frame.setLocationRelativeTo(null); // Centra la ventana
+
+            frame.setLayout(new BorderLayout());
+            frame.add(mandelbrotPanel, BorderLayout.CENTER);
+            frame.add(controlPanel, BorderLayout.SOUTH);
+
+            frame.pack();
+            frame.setLocationRelativeTo(null);
             frame.setVisible(true);
         });
     }

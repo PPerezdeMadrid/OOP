@@ -1,11 +1,13 @@
+package model;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
-package model;
 
 public class ModelMandelbrot {
 
-    // Parámetros del plano complejo actual
     private double minReal;
     private double maxReal;
     private double minImag;
@@ -13,29 +15,32 @@ public class ModelMandelbrot {
     private int maxIterations;
     private double radiusSquared;
 
-    // Tamaño en píxeles de la imagen
     private final int width;
     private final int height;
 
-    // Datos calculados: para cada píxel [y][x], nº de iteraciones
+    // Data calculated: for each pixel [y][x], number of iterations
     private int[][] data;
 
-    // Calculadora que te han dado
     private MandelbrotCalculator calculator;
 
-    // Lista de vistas (u otros) que quieren ser notificadas
+    // List of listeners (views or others) that want to be notified
     private List<ModelListener> listeners = new ArrayList<>();
 
+    // Undo/redo stacks
+    private final Deque<MandelbrotState> undoStack = new ArrayDeque<>();
+    private final Deque<MandelbrotState> redoStack = new ArrayDeque<>();
+
+
     /**
-     * Constructor básico.
-     * @param width  ancho de la imagen en píxeles
-     * @param height alto de la imagen en píxeles
+     * Constructor.
+     * @param width  of the image in pixels
+     * @param height of the image in pixels
      */
+    
     public ModelMandelbrot(int width, int height) {
         this.width = width;
         this.height = height;
 
-        // Usamos los valores iniciales que da MandelbrotCalculator
         this.minReal = MandelbrotCalculator.INITIAL_MIN_REAL;
         this.maxReal = MandelbrotCalculator.INITIAL_MAX_REAL;
         this.minImag = MandelbrotCalculator.INITIAL_MIN_IMAGINARY;
@@ -45,13 +50,12 @@ public class ModelMandelbrot {
 
         this.calculator = new MandelbrotCalculator();
 
-        // Calculamos por primera vez
         recalculate();
     }
 
     /**
-     * Recalcula el conjunto de Mandelbrot con los parámetros actuales.
-     * Llama a la calculadora y luego avisa a los listeners.
+     * Recalculates the Mandelbrot set with the current parameters.
+     * Calls the calculator and then notifies the listeners.
      */
     public void recalculate() {
         data = calculator.calcMandelbrotSet(
@@ -67,7 +71,7 @@ public class ModelMandelbrot {
         notifyListeners();
     }
 
-    // --- Getters básicos que usará la vista ---
+    // Getters
 
     public int[][] getData() {
         return data;
@@ -121,6 +125,8 @@ public class ModelMandelbrot {
      * Cambia el número máximo de iteraciones y recalcula.
      */
     public void setMaxIterations(int maxIterations) {
+        pushStateToUndo();
+
         this.maxIterations = maxIterations;
         recalculate();
     }
@@ -130,6 +136,9 @@ public class ModelMandelbrot {
      */
     public void setViewWindow(double minReal, double maxReal,
                               double minImag, double maxImag) {
+        
+        pushStateToUndo();
+
         this.minReal = minReal;
         this.maxReal = maxReal;
         this.minImag = minImag;
@@ -149,7 +158,97 @@ public class ModelMandelbrot {
         recalculate();
     }
 
-    // --- Sistema de listeners ---
+    /**
+     * Moves the current view window by the specified delta values.
+     * Positive deltaReal moves the view to the right.
+     * Positive deltaImag moves the view downward (complex plane).
+     */
+    public void pan(double deltaReal, double deltaImag) {
+        pushStateToUndo();
+
+        this.minReal += deltaReal;
+        this.maxReal += deltaReal;
+        this.minImag += deltaImag;
+        this.maxImag += deltaImag;
+
+        recalculate();
+    }
+
+    /**
+     * Saves the current state into the undo stack.
+     * Called before any state-changing operation.
+     */
+    private void pushStateToUndo() {
+        undoStack.push(new MandelbrotState(
+                minReal, maxReal,
+                minImag, maxImag,
+                maxIterations
+        ));
+        // Any new action clears redo history
+        redoStack.clear();
+    }
+
+     public boolean canUndo() {
+        return !undoStack.isEmpty();
+    }
+
+    public boolean canRedo() {
+        return !redoStack.isEmpty();
+    }
+
+    public void undo() {
+        if (!canUndo()) return;
+
+        // Save current state into redo stack
+        redoStack.push(new MandelbrotState(
+                minReal, maxReal,
+                minImag, maxImag,
+                maxIterations
+        ));
+
+        // Restore previous
+        MandelbrotState prev = undoStack.pop();
+        minReal = prev.minReal;
+        maxReal = prev.maxReal;
+        minImag = prev.minImag;
+        maxImag = prev.maxImag;
+        maxIterations = prev.maxIterations;
+
+        recalculate();
+    }
+
+    public void redo() {
+        if (!canRedo()) return;
+
+        // Save current state into undo stack
+        pushStateToUndoWithoutClearingRedo();
+
+        // Restore next
+        MandelbrotState next = redoStack.pop();
+        minReal = next.minReal;
+        maxReal = next.maxReal;
+        minImag = next.minImag;
+        maxImag = next.maxImag;
+        maxIterations = next.maxIterations;
+
+        recalculate();
+    }
+
+    /**
+     * Internal helper used only for redo.
+     * Does NOT clear redo stack.
+     */
+    private void pushStateToUndoWithoutClearingRedo() {
+        undoStack.push(new MandelbrotState(
+                minReal, maxReal,
+                minImag, maxImag,
+                maxIterations
+        ));
+    }
+
+
+
+    // --- Observer pattern methods ---
 
     public void addListener(ModelListener listener) {
         listeners.add(listener);
