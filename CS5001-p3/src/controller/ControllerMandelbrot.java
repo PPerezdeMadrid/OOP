@@ -9,6 +9,7 @@ import view.ColourMap;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.swing.event.ChangeListener;
@@ -35,6 +36,7 @@ public class ControllerMandelbrot implements MouseListener, MouseMotionListener,
     private final JFileChooser fileChooser = new JFileChooser();
     private final Map<String, ColourMap> colourMaps = new LinkedHashMap<>();
     private boolean updatingColourMapSelection = false;
+    private boolean updatingIterationSpinner = false;
 
 
     // Mouse drag positions
@@ -149,6 +151,9 @@ public class ControllerMandelbrot implements MouseListener, MouseMotionListener,
      * and updates the model's viewport.
      */
     private void applyZoom(Rectangle r) {
+        if (r.width <= 0 || r.height <= 0) {
+            return; // Ignore degenerate selections
+        }
         int width = model.getWidth();
         int height = model.getHeight();
 
@@ -193,9 +198,21 @@ public class ControllerMandelbrot implements MouseListener, MouseMotionListener,
 
     @Override
     public void stateChanged(javax.swing.event.ChangeEvent e) {
-        if (e.getSource() == iterationSpinner) {
+        if (e.getSource() == iterationSpinner && !updatingIterationSpinner) {
+            try {
+                iterationSpinner.commitEdit();
+            } catch (ParseException ex) {
+                showError("Invalid iteration value.", ex);
+                setIterationSpinnerValue(model.getMaxIterations());
+                return;
+            }
             int value = (Integer) iterationSpinner.getValue();
-            model.setMaxIterations(value);  // real-time updates
+            try {
+                model.setMaxIterations(value);  // real-time updates
+            } catch (IllegalArgumentException ex) {
+                showError("Invalid iteration value.", ex);
+                setIterationSpinnerValue(model.getMaxIterations());
+            }
         }
     }
 
@@ -204,13 +221,13 @@ public class ControllerMandelbrot implements MouseListener, MouseMotionListener,
         Object source = e.getSource();
         if (source == resetButton) {
             model.reset();  // resets coords & iterations
-            iterationSpinner.setValue(model.getMaxIterations());
+            setIterationSpinnerValue(model.getMaxIterations());
         } else if (source == undoButton) {
             model.undo();
-            iterationSpinner.setValue(model.getMaxIterations());
+            setIterationSpinnerValue(model.getMaxIterations());
         } else if (source == redoButton) {
             model.redo();
-            iterationSpinner.setValue(model.getMaxIterations());
+            setIterationSpinnerValue(model.getMaxIterations());
         } else if (source == saveButton) {
             handleSave();
         } else if (source == loadButton) {
@@ -245,7 +262,7 @@ public class ControllerMandelbrot implements MouseListener, MouseMotionListener,
         if (fileChooser.showOpenDialog(panel) == JFileChooser.APPROVE_OPTION) {
             try {
                 model.loadFromFile(fileChooser.getSelectedFile());
-                iterationSpinner.setValue(model.getMaxIterations());
+                setIterationSpinnerValue(model.getMaxIterations());
                 applyColourMap(model.getColorMapName());
                 JOptionPane.showMessageDialog(panel,
                         "Settings loaded successfully.",
@@ -300,6 +317,15 @@ public class ControllerMandelbrot implements MouseListener, MouseMotionListener,
         }
         panel.setColourMap(map);
         model.setColorMapName(name);
+    }
+
+    private void setIterationSpinnerValue(int value) {
+        updatingIterationSpinner = true;
+        try {
+            iterationSpinner.setValue(value);
+        } finally {
+            updatingIterationSpinner = false;
+        }
     }
 
     // Unused interface methods (required to compile)

@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import model.ModelMandelbrot;
 import view.UIStyler;
 
 /**
@@ -22,7 +23,12 @@ public class ControlPanelMandelbrot extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
         iterationSpinner = new JSpinner(
-                new SpinnerNumberModel(initialIterations, 10, 5000, 10)
+                new SpinnerNumberModel(
+                        initialIterations,
+                        ModelMandelbrot.MIN_ITERATIONS,
+                        ModelMandelbrot.MAX_ITERATIONS,
+                        10
+                )
         );
 
         resetButton = new JButton("Reset");

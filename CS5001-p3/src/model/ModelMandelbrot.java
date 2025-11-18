@@ -14,6 +14,8 @@ import java.util.Properties;
 public class ModelMandelbrot {
 
     private static final String DEFAULT_COLOR_MAP = "Black & White";
+    public static final int MIN_ITERATIONS = 10;
+    public static final int MAX_ITERATIONS = 5000;
 
     private double minReal;
     private double maxReal;
@@ -137,6 +139,7 @@ public class ModelMandelbrot {
      * Updates the max number of iterations and triggers a recalculation.
      */
     public void setMaxIterations(int maxIterations) {
+        validateIterations(maxIterations);
         pushStateToUndo();
 
         this.maxIterations = maxIterations;
@@ -148,7 +151,8 @@ public class ModelMandelbrot {
      */
     public void setViewWindow(double minReal, double maxReal,
                               double minImag, double maxImag) {
-        
+        validateViewWindow(minReal, maxReal, minImag, maxImag);
+
         pushStateToUndo();
 
         this.minReal = minReal;
@@ -292,6 +296,13 @@ public class ModelMandelbrot {
         int newMaxIterations = readInt(props, "maxIterations");
         String newColorMapName = props.getProperty("colorMap", DEFAULT_COLOR_MAP);
 
+        try {
+            validateViewWindow(newMinReal, newMaxReal, newMinImag, newMaxImag);
+            validateIterations(newMaxIterations);
+        } catch (IllegalArgumentException ex) {
+            throw new IOException("Invalid settings file: " + ex.getMessage(), ex);
+        }
+
         pushStateToUndo();
 
         this.minReal = newMinReal;
@@ -299,14 +310,20 @@ public class ModelMandelbrot {
         this.minImag = newMinImag;
         this.maxImag = newMaxImag;
         this.maxIterations = newMaxIterations;
-        this.colorMapName = newColorMapName;
+        this.colorMapName = normalizeColourMapName(newColorMapName);
 
         recalculate();
     }
 
     public void setColorMapName(String colorMapName) {
-        this.colorMapName = (colorMapName == null) ? DEFAULT_COLOR_MAP : colorMapName;
+        this.colorMapName = normalizeColourMapName(colorMapName);
         notifyListeners();
+    }
+
+    private String normalizeColourMapName(String colorMapName) {
+        return (colorMapName == null || colorMapName.trim().isEmpty())
+                ? DEFAULT_COLOR_MAP
+                : colorMapName;
     }
 
     private double readDouble(Properties props, String key) throws IOException {
@@ -330,6 +347,23 @@ public class ModelMandelbrot {
             return Integer.parseInt(value);
         } catch (NumberFormatException e) {
             throw new IOException("Invalid integer for " + key, e);
+        }
+    }
+
+    private void validateIterations(int iterations) {
+        if (iterations < MIN_ITERATIONS || iterations > MAX_ITERATIONS) {
+            throw new IllegalArgumentException(
+                    "maxIterations must be between " + MIN_ITERATIONS + " and " + MAX_ITERATIONS);
+        }
+    }
+
+    private void validateViewWindow(double minReal, double maxReal,
+                                    double minImag, double maxImag) {
+        if (minReal >= maxReal) {
+            throw new IllegalArgumentException("minReal must be less than maxReal");
+        }
+        if (minImag >= maxImag) {
+            throw new IllegalArgumentException("minImag must be less than maxImag");
         }
     }
 
