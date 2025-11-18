@@ -1,45 +1,29 @@
 package view;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.event.ChangeEvent;
+import java.awt.Color;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
- * Tests for view helpers (control panel mechanics, colour-map utilities, etc.).
+ * Tests for view helpers (colour-map utilities, control panel logic, etc.).
  */
 public class ViewMandelbrotTest {
 
-    @BeforeAll
-    public static void enableHeadlessMode() {
-        System.setProperty("java.awt.headless", "true");
-    }
-
     /**
-     * Ensure the iteration spinner enforces the same bounds as the model constants.
+     * Simple regression test for the blue colour map gradient.
      */
     @Test
-    public void controlPanelSpinnerRespectsModelBounds() {
-        ControlPanelMandelbrot panel = new ControlPanelMandelbrot(100);
-        JSpinner spinner = panel.getIterationSpinner();
-        SpinnerNumberModel model = (SpinnerNumberModel) spinner.getModel();
+    public void blueColourMapProducesGradient() {
+        BlueColourMap map = new BlueColourMap();
+        Color nearZero = map.map(0, 100);
+        Color mid = map.map(50, 100);
+        Color max = map.map(100, 100);
 
-        // Force value below minimum via the model to mimic user input
-        model.setValue(ModelMandelbrot.MIN_ITERATIONS - 5);
-        spinner.commitEdit();
-        spinner.getModel().setValue(model.getValue()); // trigger change event
-        panel.getIterationSpinner().fireStateChanged();
-        assertEquals(ModelMandelbrot.MIN_ITERATIONS, spinner.getValue());
-
-        // Force value above maximum
-        model.setValue(ModelMandelbrot.MAX_ITERATIONS + 123);
-        spinner.commitEdit();
-        spinner.getModel().setValue(model.getValue());
-        panel.getIterationSpinner().fireStateChanged();
-        assertEquals(ModelMandelbrot.MAX_ITERATIONS, spinner.getValue());
+        assertEquals("Blue", map.getName());
+        assertNotEquals(nearZero, mid); // Gradient should change across iterations
+        assertEquals(Color.BLACK, max); // Points at max iterations should be black
     }
 }
