@@ -102,22 +102,10 @@ Here is a clean, concise **Markdown** version in English, listing the controller
 
 ### `src/test/controller/ControllerMandelbrotTest`
 
-Tests in this class focus on the **controller layer**, ensuring it correctly interprets UI actions, validates user input, and delegates work to the model.
 The tests rely on lightweight **fake model and fake view** classes that simply record method calls rather than performing real computations.
 
-Tests Included:
 * Model delegation:
   Verify that UI actions (`changeIterations`, `pan`, `setColorMapName`, etc.) call the correct model methods with the expected parameters.
-
-* Undo/Redo routing:
-  Check that controller methods correctly call `model.undo()` and `model.redo()`, and that the controller respects `canUndo()` / `canRedo()`.
-
-* Save/Load forwarding:
-  Confirm that file operations (`saveToFile`, `loadFromFile`) are delegated to the model and that errors are handled by the controller without crashing.
-
-* Model-to-view updates:
-  When the model triggers `modelChanged()`, the controller should refresh the view; the fake view counts refresh calls to validate this behavior.
-
 
 
 ### `src/test/view/*`

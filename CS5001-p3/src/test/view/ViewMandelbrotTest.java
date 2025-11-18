@@ -1,19 +1,45 @@
 package view;
 
-import controller.ControllerMandelbrot;
-import model.ModelMandelbrot;
-import view.ControlPanelMandelbrot;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.event.ChangeEvent;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Placeholder for tests that cover view-side helpers such as control panels,
- * colour map utilities or other non-rendering logic.
+ * Tests for view helpers (control panel mechanics, colour-map utilities, etc.).
  */
 public class ViewMandelbrotTest {
 
-    private ModelMandelbrot model;
-    private ControllerMandelbrot controller;
-    private ControlPanelMandelbrot controlPanel;
+    @BeforeAll
+    public static void enableHeadlessMode() {
+        System.setProperty("java.awt.headless", "true");
+    }
 
-    // TODO: verify that the control panel synchronises with the model,
-    // e.g. updates fields when listeners fire and validates user input.
+    /**
+     * Ensure the iteration spinner enforces the same bounds as the model constants.
+     */
+    @Test
+    public void controlPanelSpinnerRespectsModelBounds() {
+        ControlPanelMandelbrot panel = new ControlPanelMandelbrot(100);
+        JSpinner spinner = panel.getIterationSpinner();
+        SpinnerNumberModel model = (SpinnerNumberModel) spinner.getModel();
+
+        // Force value below minimum via the model to mimic user input
+        model.setValue(ModelMandelbrot.MIN_ITERATIONS - 5);
+        spinner.commitEdit();
+        spinner.getModel().setValue(model.getValue()); // trigger change event
+        panel.getIterationSpinner().fireStateChanged();
+        assertEquals(ModelMandelbrot.MIN_ITERATIONS, spinner.getValue());
+
+        // Force value above maximum
+        model.setValue(ModelMandelbrot.MAX_ITERATIONS + 123);
+        spinner.commitEdit();
+        spinner.getModel().setValue(model.getValue());
+        panel.getIterationSpinner().fireStateChanged();
+        assertEquals(ModelMandelbrot.MAX_ITERATIONS, spinner.getValue());
+    }
 }
