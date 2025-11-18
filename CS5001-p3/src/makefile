@@ -1,31 +1,31 @@
-
 SRC_DIR=.
 TEST_DIR=test
 BIN_DIR=bin
 
-SOURCES=$(shell find $(SRC_DIR) -name "*.java")
+SOURCES=$(shell find $(SRC_DIR) -name "*.java" ! -path "./test/*")
 TEST_SOURCES=$(shell find $(TEST_DIR) -name "*.java")
 
-CLASSPATH=$(BIN_DIR)
+STANDALONE_JAR = JUnit/lib-alone/junit-platform-console-standalone-1.13.4.jar
+
+CLASSPATH=$(BIN_DIR):$(STANDALONE_JAR)
 
 .PHONY: all compile run compile_tests test clean
 
-all: run
+all: test
 
 compile:
 	mkdir -p $(BIN_DIR)
 	javac -d $(BIN_DIR) $(SOURCES)
 
-
-run: compile
-	java -cp $(CLASSPATH) view.MandelbrotApp
-
-
 compile_tests: compile
-	javac -d $(BIN_DIR) -cp $(CLASSPATH) $(TEST_SOURCES)
+	javac -cp "$(CLASSPATH)" -d $(BIN_DIR) $(TEST_SOURCES)
 
 test: compile_tests
-	java -cp $(CLASSPATH) ModelMandelbrotTest
+	@echo "Running JUnit tests..."
+	java -jar $(STANDALONE_JAR) -cp $(BIN_DIR) --scan-classpath
+
+run: compile
+	java -cp $(BIN_DIR) view.MandelbrotApp
 
 clean:
 	rm -rf $(BIN_DIR)
