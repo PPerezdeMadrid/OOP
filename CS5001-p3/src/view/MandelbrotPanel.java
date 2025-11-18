@@ -11,6 +11,7 @@ public class MandelbrotPanel extends JPanel implements ModelListener {
     private final ModelMandelbrot model;
     private Point dragStart;
     private Point dragEnd;
+    private ColourMap colourMap = new BlackWhiteColourMap();
 
     public MandelbrotPanel(ModelMandelbrot model) {
         this.model = model;
@@ -40,17 +41,11 @@ public class MandelbrotPanel extends JPanel implements ModelListener {
         int width = data[0].length;
         int maxIter = model.getMaxIterations();
 
-        
+
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 int iter = data[y][x];
-
-                if (iter >= maxIter) {
-                    g.setColor(Color.BLACK);
-                } else {
-                    g.setColor(Color.WHITE);
-                }
-
+                g.setColor(colourMap.map(iter, maxIter));
                 g.fillRect(x, y, 1, 1);
             }
         }
@@ -71,5 +66,14 @@ public class MandelbrotPanel extends JPanel implements ModelListener {
     @Override
     public void modelChanged() {
         repaint();
+    }
+
+    public void setColourMap(ColourMap colourMap) {
+        this.colourMap = colourMap;
+        repaint();
+    }
+
+    public ColourMap getColourMap() {
+        return colourMap;
     }
 }

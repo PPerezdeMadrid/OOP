@@ -2,9 +2,15 @@ package controller;
 
 import model.ModelMandelbrot;
 import view.MandelbrotPanel;
+import view.BlackWhiteColourMap;
+import view.BlueColourMap;
+import view.ColourMap;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.*;
@@ -23,6 +29,12 @@ public class ControllerMandelbrot implements MouseListener, MouseMotionListener,
     private final JButton resetButton; 
     private final JButton undoButton;
     private final JButton redoButton;
+    private final JButton saveButton;
+    private final JButton loadButton;
+    private final JComboBox<String> colourMapCombo;
+    private final JFileChooser fileChooser = new JFileChooser();
+    private final Map<String, ColourMap> colourMaps = new LinkedHashMap<>();
+    private boolean updatingColourMapSelection = false;
 
 
     // Mouse drag positions
@@ -32,13 +44,20 @@ public class ControllerMandelbrot implements MouseListener, MouseMotionListener,
     private boolean isPanning = false; 
 
 
-    public ControllerMandelbrot(ModelMandelbrot model, MandelbrotPanel panel, JSpinner iterationSpinner, JButton resetButton,JButton undoButton, JButton redoButton) {
+    public ControllerMandelbrot(ModelMandelbrot model, MandelbrotPanel panel,
+                                JSpinner iterationSpinner, JButton resetButton,
+                                JButton undoButton, JButton redoButton,
+                                JButton saveButton, JButton loadButton,
+                                JComboBox<String> colourMapCombo) {
         this.model = model;
         this.panel = panel;
         this.iterationSpinner = iterationSpinner;
         this.resetButton = resetButton;
         this.undoButton = undoButton;
         this.redoButton = redoButton;
+        this.saveButton = saveButton;
+        this.loadButton = loadButton;
+        this.colourMapCombo = colourMapCombo;
 
 
         // Register to receive mouse events from the panel
@@ -48,9 +67,14 @@ public class ControllerMandelbrot implements MouseListener, MouseMotionListener,
         // Listeners for control panel
         iterationSpinner.addChangeListener(this);
         resetButton.addActionListener(this);
-
         undoButton.addActionListener(this);
         redoButton.addActionListener(this);
+        saveButton.addActionListener(this);
+        loadButton.addActionListener(this);
+        colourMapCombo.addActionListener(this);
+
+        initializeColourMaps();
+        applyColourMap(model.getColorMapName());
 
     }
 
@@ -177,21 +201,106 @@ public class ControllerMandelbrot implements MouseListener, MouseMotionListener,
 
     @Override
     public void actionPerformed(java.awt.event.ActionEvent e) {
-        if (e.getSource() == resetButton) {
+        Object source = e.getSource();
+        if (source == resetButton) {
             model.reset();  // resets coords & iterations
             iterationSpinner.setValue(model.getMaxIterations());
-        }
-        if (e.getSource() == undoButton) {
+        } else if (source == undoButton) {
             model.undo();
             iterationSpinner.setValue(model.getMaxIterations());
-        }
-
-        if (e.getSource() == redoButton) {
+        } else if (source == redoButton) {
             model.redo();
             iterationSpinner.setValue(model.getMaxIterations());
+        } else if (source == saveButton) {
+            handleSave();
+        } else if (source == loadButton) {
+            handleLoad();
+        } else if (source == colourMapCombo) {
+            handleColourMapSelection();
         }
 
             }
+
+    /*
+    * Handles saving the current model settings to a file.
+    */
+    private void handleSave() {
+        if (fileChooser.showSaveDialog(panel) == JFileChooser.APPROVE_OPTION) {
+            try {
+                model.saveToFile(fileChooser.getSelectedFile());
+                JOptionPane.showMessageDialog(panel,
+                        "Settings saved successfully.",
+                        "Save",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ex) {
+                showError("Unable to save settings.", ex);
+            }
+        }
+    }
+
+    /*
+    * Handles loading model settings from a file.
+    */
+    private void handleLoad() {
+        if (fileChooser.showOpenDialog(panel) == JFileChooser.APPROVE_OPTION) {
+            try {
+                model.loadFromFile(fileChooser.getSelectedFile());
+                iterationSpinner.setValue(model.getMaxIterations());
+                applyColourMap(model.getColorMapName());
+                JOptionPane.showMessageDialog(panel,
+                        "Settings loaded successfully.",
+                        "Load",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ex) {
+                showError("Unable to load settings.", ex);
+            }
+        }
+    }
+
+    private void showError(String message, Exception ex) {
+        JOptionPane.showMessageDialog(panel,
+                message + "\n" + ex.getMessage(),
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+    }
+
+    private void initializeColourMaps() {
+        colourMaps.clear();
+        addColourMap(new BlackWhiteColourMap());
+        addColourMap(new BlueColourMap());
+    }
+
+    private void addColourMap(ColourMap colourMap) {
+        colourMaps.put(colourMap.getName(), colourMap);
+        colourMapCombo.addItem(colourMap.getName());
+    }
+
+    private void handleColourMapSelection() {
+        if (updatingColourMapSelection) {
+            return;
+        }
+        String name = (String) colourMapCombo.getSelectedItem();
+        applyColourMap(name);
+    }
+
+    private void applyColourMap(String name) {
+        if (colourMaps.isEmpty()) {
+            return;
+        }
+        ColourMap map = colourMaps.get(name);
+        if (map == null) {
+            map = colourMaps.values().iterator().next();
+            name = map.getName();
+        }
+        updatingColourMapSelection = true;
+        try {
+            colourMapCombo.setSelectedItem(name);
+        } finally {
+            updatingColourMapSelection = false;
+        }
+        panel.setColourMap(map);
+        model.setColorMapName(name);
+    }
 
     // Unused interface methods (required to compile)
     @Override public void mouseMoved(MouseEvent e) {}

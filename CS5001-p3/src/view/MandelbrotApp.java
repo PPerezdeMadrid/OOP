@@ -27,7 +27,10 @@ public class MandelbrotApp {
                     controlPanel.getIterationSpinner(),
                     controlPanel.getResetButton(),
                     controlPanel.getUndoButton(),
-                    controlPanel.getRedoButton()
+                    controlPanel.getRedoButton(),
+                    controlPanel.getSaveButton(),
+                    controlPanel.getLoadButton(),
+                    controlPanel.getColourMapCombo()
                 );
 
             JFrame frame = new JFrame("Mandelbrot Explorer");

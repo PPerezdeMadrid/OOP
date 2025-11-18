@@ -1,12 +1,19 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
+import java.util.List;
+import java.util.Properties;
 
 
 public class ModelMandelbrot {
+
+    private static final String DEFAULT_COLOR_MAP = "Black & White";
 
     private double minReal;
     private double maxReal;
@@ -17,6 +24,7 @@ public class ModelMandelbrot {
 
     private final int width;
     private final int height;
+    private String colorMapName = DEFAULT_COLOR_MAP;
 
     // Data calculated: for each pixel [y][x], number of iterations
     private int[][] data;
@@ -109,9 +117,13 @@ public class ModelMandelbrot {
         return radiusSquared;
     }
 
+    public String getColorMapName() {
+        return colorMapName;
+    }
+
     /**
-     * Magnificación aproximada respecto al rango inicial.
-     * (Opcional, pero útil para mostrarlo en pantalla.)
+     * Approximate magnification relative to the first range.
+     * Handy if the UI wants to display the zoom level.
      */
     public double getMagnification() {
         double initialWidth = MandelbrotCalculator.INITIAL_MAX_REAL - MandelbrotCalculator.INITIAL_MIN_REAL;
@@ -119,10 +131,10 @@ public class ModelMandelbrot {
         return initialWidth / currentWidth;
     }
 
-    // --- Métodos de modificación simples (básico) ---
+    // --- Basic setters that change the current state ---
 
     /**
-     * Cambia el número máximo de iteraciones y recalcula.
+     * Updates the max number of iterations and triggers a recalculation.
      */
     public void setMaxIterations(int maxIterations) {
         pushStateToUndo();
@@ -132,7 +144,7 @@ public class ModelMandelbrot {
     }
 
     /**
-     * Ajusta el rango del plano complejo (lo usaremos más adelante para el zoom).
+     * Sets the complex plane rectangle used for rendering.
      */
     public void setViewWindow(double minReal, double maxReal,
                               double minImag, double maxImag) {
@@ -147,7 +159,7 @@ public class ModelMandelbrot {
     }
 
     /**
-     * Resetea la vista a los valores iniciales.
+     * Restores the initial coordinates and settings.
      */
     public void reset() {
         this.minReal = MandelbrotCalculator.INITIAL_MIN_REAL;
@@ -155,6 +167,7 @@ public class ModelMandelbrot {
         this.minImag = MandelbrotCalculator.INITIAL_MIN_IMAGINARY;
         this.maxImag = MandelbrotCalculator.INITIAL_MAX_IMAGINARY;
         this.maxIterations = MandelbrotCalculator.INITIAL_MAX_ITERATIONS;
+        this.colorMapName = DEFAULT_COLOR_MAP;
         recalculate();
     }
 
@@ -244,6 +257,80 @@ public class ModelMandelbrot {
                 minImag, maxImag,
                 maxIterations
         ));
+    }
+
+    /**
+     * Saves the current model parameters to a file.
+     */
+    public void saveToFile(File file) throws IOException {
+        Properties props = new Properties();
+        props.setProperty("minReal", Double.toString(minReal));
+        props.setProperty("maxReal", Double.toString(maxReal));
+        props.setProperty("minImag", Double.toString(minImag));
+        props.setProperty("maxImag", Double.toString(maxImag));
+        props.setProperty("maxIterations", Integer.toString(maxIterations));
+        props.setProperty("colorMap", colorMapName);
+
+        try (FileOutputStream out = new FileOutputStream(file)) {
+            props.store(out, "Mandelbrot settings");
+        }
+    }
+
+    /**
+     * Loads model parameters from a file and recalculates the set.
+     */
+    public void loadFromFile(File file) throws IOException {
+        Properties props = new Properties();
+        try (FileInputStream in = new FileInputStream(file)) {
+            props.load(in);
+        }
+
+        double newMinReal = readDouble(props, "minReal");
+        double newMaxReal = readDouble(props, "maxReal");
+        double newMinImag = readDouble(props, "minImag");
+        double newMaxImag = readDouble(props, "maxImag");
+        int newMaxIterations = readInt(props, "maxIterations");
+        String newColorMapName = props.getProperty("colorMap", DEFAULT_COLOR_MAP);
+
+        pushStateToUndo();
+
+        this.minReal = newMinReal;
+        this.maxReal = newMaxReal;
+        this.minImag = newMinImag;
+        this.maxImag = newMaxImag;
+        this.maxIterations = newMaxIterations;
+        this.colorMapName = newColorMapName;
+
+        recalculate();
+    }
+
+    public void setColorMapName(String colorMapName) {
+        this.colorMapName = (colorMapName == null) ? DEFAULT_COLOR_MAP : colorMapName;
+        notifyListeners();
+    }
+
+    private double readDouble(Properties props, String key) throws IOException {
+        String value = props.getProperty(key);
+        if (value == null) {
+            throw new IOException("Missing property: " + key);
+        }
+        try {
+            return Double.parseDouble(value);
+        } catch (NumberFormatException e) {
+            throw new IOException("Invalid double for " + key, e);
+        }
+    }
+
+    private int readInt(Properties props, String key) throws IOException {
+        String value = props.getProperty(key);
+        if (value == null) {
+            throw new IOException("Missing property: " + key);
+        }
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            throw new IOException("Invalid integer for " + key, e);
+        }
     }
 
 
