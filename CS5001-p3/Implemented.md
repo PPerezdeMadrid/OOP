@@ -1,5 +1,5 @@
 # Mandelbrot Set Viewer - Feature  Checklist
-### ✔ Mouse Interaction
+### Mouse Interaction
 
 * **[ DONE ]** Left-click + SHIFT + drag → **Pan** (move the view window)
 * **[ DONE ]** Right-click + drag → **Pan** (alternative pan mode)
@@ -7,20 +7,20 @@
 * **[ DONE ]** Release after drawing rectangle → **Zoom into selected area**
 * **[ DONE ]** Zoom rectangle is visually shown on screen
 
-### ✔ Model Functionality
+### Model Functionality
 
 * **[ DONE ]** View window updates correctly after zoom
 * **[ DONE ]** View window updates correctly after pan
 * **[ DONE ]** Mandelbrot recalculation on every view change
 * **[ DONE ]** Panel redraws automatically via ModelListener
 
-### ✔ Rendering / Visuals
+### Rendering / Visuals
 
 * **[ DONE ]** Mandelbrot set renders in black & white
 * **[ DONE ]** Pixel-by-pixel drawing based on iteration values
 * **[ DONE ]** Zoom rectangle drawn on top of fractal
 
-### ✔ MVC Architecture
+### MVC Architecture
 
 * **[ DONE ]** Clear separation into:
 
@@ -29,76 +29,52 @@
   * **Controller**: handles mouse input and delegates to model
 * **[ DONE ]** Observer pattern (`ModelListener`) used for repainting
 
-* [ DONE ] Iteration control
+* **[ DONE ]**  Iteration control
 
   * Slider or spinner to change `maxIterations`
   * Updates model in real time
-* [ DONE ] Reset button
+* **[ DONE ]**  Reset button
 
   * Resets view to original coordinates
   * Resets iterations to default
-* [ DONE ] UI layout (panel at bottom or side)
-
-
+* **[ DONE ]**  UI layout (panel at bottom or side)
 
 
 # CATEGORY 2 – ENHANCEMENTS
 
-
 ## Colour Maps
 
-* [ TODO ] Define interface `ColourMap`
-* [ TODO ] Implement at least 2–3 color schemes:
-
+* **[ DONE ]**  Define interface `ColourMap`
+* **[ DONE ]**  Implement at least 2 color schemes:
   * Black & White
-  * Blue gradient
-  * Red gradient
-  * Rainbow or smooth gradient
-* [ TODO ] Add UI to switch between color maps
-
-  * Buttons
-  * Or drop-down menu
+  * Blue 
+* **[ DONE ]**  Add UI to switch between color maps
 
 ## 2. Full Undo / Redo
 
-* [ DONE ] Two stacks in the model:
-
+* **[ DONE ]**  Two stacks in the model:
   * undoStack
   * redoStack
-* [ DONE ] Save a snapshot before each:
-
+* **[ DONE ]**  Save a snapshot before each:
   * zoom
   * pan
   * iteration change
   * color map change
-* [ DONE ] Buttons:
-
+* **[ DONE ]**  Buttons:
   * Undo
   * Redo
 
-
 ## 3. Save / Load Settings
 
-* [ DONE ] Write current view parameters to a file:
-
+* **[ DONE ]**  Write current view parameters to a file:
   * minReal, maxReal
   * minImag, maxImag
   * maxIterations
   * selected color map
-* [ DONE ] Load them back
-* [ DONE ] File chooser dialog
-
-
-
+* **[ DONE ]**  Load them back
+* **[ DONE ]** File chooser dialog
 
 # CATEGORY 3 – SOFTWARE QUALITY
-
-
-### Good OOP design
-
-* [ TODO ] Move color maps into polymorphic classes
-* [ TODO ] No duplicated code
-* [ TODO ] Short, clean methods
 
 ### Good documentation
 

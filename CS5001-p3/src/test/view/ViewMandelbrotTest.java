@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
- * Tests for view helpers (colour-map utilities, control panel logic, etc.).
+ * Tests for view helpers. 
  */
 public class ViewMandelbrotTest {
 
