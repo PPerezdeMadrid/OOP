@@ -2,6 +2,9 @@ package view;
 
 import java.awt.Color;
 
+/**
+ * Produces a blue-tinted gradient for Mandelbrot iterations.
+ */
 public class BlueColourMap implements ColourMap {
 
     @Override

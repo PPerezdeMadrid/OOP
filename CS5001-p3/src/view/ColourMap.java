@@ -8,7 +8,9 @@ import java.awt.Color;
 public interface ColourMap {
 
     /**
-     * Human-friendly name to show in the UI.
+     * Name to show in the UI.
+     *
+     * @return display name of the map
      */
     String getName();
 

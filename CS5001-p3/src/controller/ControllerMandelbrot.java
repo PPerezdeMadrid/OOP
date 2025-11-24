@@ -46,6 +46,19 @@ public class ControllerMandelbrot implements MouseListener, MouseMotionListener,
     private boolean isPanning = false; 
 
 
+    /**
+     * Wires the model, view panel, and UI controls together and registers listeners.
+     *
+     * @param model backing Mandelbrot model
+     * @param panel display panel to update and listen to
+     * @param iterationSpinner spinner controlling max iterations
+     * @param resetButton button to reset the view
+     * @param undoButton button to undo the last view change
+     * @param redoButton button to redo the last undone change
+     * @param saveButton button to save the current state
+     * @param loadButton button to load a saved state
+     * @param colourMapCombo combo box listing available colour maps
+     */
     public ControllerMandelbrot(ModelMandelbrot model, MandelbrotPanel panel,
                                 JSpinner iterationSpinner, JButton resetButton,
                                 JButton undoButton, JButton redoButton,

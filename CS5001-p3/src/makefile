@@ -1,6 +1,7 @@
 SRC_DIR=.
 TEST_DIR=test
 BIN_DIR=bin
+DOC_DIR=doc
 
 SOURCES=$(shell find $(SRC_DIR) -name "*.java" ! -path "./test/*")
 TEST_SOURCES=$(shell find $(TEST_DIR) -name "*.java")
@@ -9,7 +10,7 @@ STANDALONE_JAR = JUnit/lib-alone/junit-platform-console-standalone-1.13.4.jar
 
 CLASSPATH=$(BIN_DIR):$(STANDALONE_JAR)
 
-.PHONY: all compile run compile_tests test clean
+.PHONY: all compile run compile_tests test javadoc clean
 
 all: test
 
@@ -27,5 +28,9 @@ test: compile_tests
 run: compile
 	java -cp $(BIN_DIR) view.MandelbrotApp
 
+javadoc:
+	mkdir -p $(DOC_DIR)
+	javadoc -d $(DOC_DIR) -sourcepath $(SRC_DIR) $(SOURCES)
+
 clean:
-	rm -rf $(BIN_DIR)
+	rm -rf $(BIN_DIR) $(DOC_DIR)

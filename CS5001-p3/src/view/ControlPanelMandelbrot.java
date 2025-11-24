@@ -10,14 +10,26 @@ import view.UIStyler;
  */
 public class ControlPanelMandelbrot extends JPanel {
 
+    /** Spinner used to adjust the maximum iteration count. */
     private final JSpinner iterationSpinner;
+    /** Resets the view and iteration count to defaults. */
     private final JButton resetButton;
+    /** Reverts the last zoom or movement action. */
     private final JButton undoButton;
+    /** Reapplies an action that was previously undone. */
     private final JButton redoButton;
+    /** Saves the current Mandelbrot image to disk. */
     private final JButton saveButton;
+    /** Loads a saved Mandelbrot image. */
     private final JButton loadButton;
+    /** Drop-down list for choosing the active colour map. */
     private final JComboBox<String> colourMapCombo;
 
+    /**
+     * Builds the control panel with styled controls and initial iteration value.
+     *
+     * @param initialIterations starting iteration count for the spinner
+     */
     public ControlPanelMandelbrot(int initialIterations) {
         UIStyler.stylePanel(this);
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
@@ -66,32 +78,51 @@ public class ControlPanelMandelbrot extends JPanel {
 
     }
 
-
-
+    /**
+     * @return spinner controlling the iteration count
+     */
     public JSpinner getIterationSpinner() {
         return iterationSpinner;
     }
 
+    /**
+     * @return reset button component
+     */
     public JButton getResetButton() {
         return resetButton;
     }
 
+    /**
+     * @return undo button component
+     */
     public JButton getUndoButton() {
         return undoButton;
     }
 
+    /**
+     * @return redo button component
+     */
     public JButton getRedoButton() {
         return redoButton;
     }
 
+    /**
+     * @return save button component
+     */
     public JButton getSaveButton() {
         return saveButton;
     }
 
+    /**
+     * @return load button component
+     */
     public JButton getLoadButton() {
         return loadButton;
     }
 
+    /**
+     * @return colour map selection combo box
+     */
     public JComboBox<String> getColourMapCombo() {
         return colourMapCombo;
     }

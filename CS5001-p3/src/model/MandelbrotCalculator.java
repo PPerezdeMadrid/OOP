@@ -43,16 +43,26 @@ either expressed or implied, of the FreeBSD Project.
  */
 
 package model;
+
+/**
+ * Performs Mandelbrot set calculations given viewport parameters.
+ */
 public class MandelbrotCalculator {
 
     // Initial parameter values
+    /** Initial minimum real coordinate for the view window. */
     protected static final double INITIAL_MIN_REAL = -2.0;
+    /** Initial maximum real coordinate for the view window. */
     protected static final double INITIAL_MAX_REAL = 0.7;
+    /** Initial minimum imaginary coordinate for the view window. */
     protected static final double INITIAL_MIN_IMAGINARY = -1.25;
+    /** Initial maximum imaginary coordinate for the view window. */
     protected static final double INITIAL_MAX_IMAGINARY = 1.25;
+    /** Default starting iteration limit. */
     protected static final int INITIAL_MAX_ITERATIONS = 50;
 
     // Default parameter values
+    /** Default bailout radius squared. */
     protected static final double DEFAULT_RADIUS_SQUARED = 4.0;
 
 
@@ -105,6 +115,7 @@ public class MandelbrotCalculator {
      * @param minReal the lower real bound for the complex constant C (equivalent to lower bound X value in Mandelbrot set)
      * @param maxReal the upper real bound for the complex constant C (equivalent to upper bound X value in Mandelbrot set)
      * @param minImaginary the lower imaginary bound for the complex constant C (equivalent to lower bound Y value in Mandelbrot set)
+     * @param maxImaginary the upper imaginary bound for the complex constant C (equivalent to upper bound Y value in Mandelbrot set)
      * @param maxIterations the maximum number of iterations to iterate the complex formula
      * @param radiusSquared the squared of the radius to use when determining whether Z escaped the circle in the complex plain or remained bounded.
      * @return the 2-D integer array mandelbrotData[yResolution][xResolution] containing the for each [y][x] pixel the number of iterations needed until Z escaped the bounding radius, or maxIterations otherwise.

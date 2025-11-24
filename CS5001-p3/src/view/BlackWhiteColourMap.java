@@ -2,6 +2,9 @@ package view;
 
 import java.awt.Color;
 
+/**
+ * Maps points to a simple black-and-white palette.
+ */
 public class BlackWhiteColourMap implements ColourMap {
 
     @Override

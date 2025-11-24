@@ -6,12 +6,26 @@ package model;
  */
 public class MandelbrotState {
 
+    /** Minimum real coordinate of view window. */
     public final double minReal;
+    /** Maximum real coordinate of view window. */
     public final double maxReal;
+    /** Minimum imaginary coordinate of view window. */
     public final double minImag;
+    /** Maximum imaginary coordinate of view window. */
     public final double maxImag;
+    /** Maximum iterations for Mandelbrot calculation. */
     public final int maxIterations;
 
+    /**
+     * Creates a state snapshot of the current view window and iteration cap.
+     *
+     * @param minReal minimum real coordinate
+     * @param maxReal maximum real coordinate
+     * @param minImag minimum imaginary coordinate
+     * @param maxImag maximum imaginary coordinate
+     * @param maxIterations maximum iterations allowed
+     */
     public MandelbrotState(double minReal, double maxReal,
                            double minImag, double maxImag,
                            int maxIterations) {

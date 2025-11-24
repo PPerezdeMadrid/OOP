@@ -3,10 +3,15 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Utility methods to apply consistent styling to UI components.
+ */
 public class UIStyler {
 
     /**
      * General button style (yellow + purple theme).
+     *
+     * @param button button to style
      */
     public static void styleButton(JButton button) {
 
@@ -20,15 +25,15 @@ public class UIStyler {
         button.setForeground(fgColor);
         button.setFont(new Font("SansSerif", Font.BOLD, 14));
 
-        // Border
         button.setBorder(BorderFactory.createLineBorder(borderColor, 2));
 
-        // MUCH more padding (internal space)
         button.setMargin(new Insets(14, 28, 14, 28)); 
     }
 
     /**
      * Reset button (red theme).
+     *
+     * @param button button to style
      */
     public static void styleResetButton(JButton button) {
 
@@ -50,6 +55,8 @@ public class UIStyler {
 
     /**
      * Undo button (blue theme).
+     *
+     * @param button button to style
      */
     public static void styleUndoButton(JButton button) {
 
@@ -69,6 +76,8 @@ public class UIStyler {
 
     /**
      * Redo button (green theme).
+     *
+     * @param button button to style
      */
     public static void styleRedoButton(JButton button) {
 
@@ -88,6 +97,8 @@ public class UIStyler {
 
     /**
      * Style for the panel containing the buttons.
+     *
+     * @param panel panel to style
      */
     public static void stylePanel(JPanel panel) {
 
@@ -100,4 +111,3 @@ public class UIStyler {
         panel.setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
     }
 }
-

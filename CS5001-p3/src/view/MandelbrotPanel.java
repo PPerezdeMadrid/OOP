@@ -6,13 +6,25 @@ import model.ModelListener;
 import model.ModelMandelbrot;
 
 
+/**
+ * Panel responsible for rendering the Mandelbrot set and selection overlays.
+ */
 public class MandelbrotPanel extends JPanel implements ModelListener {
 
+    /** Backing model supplying Mandelbrot pixel data. */
     private final ModelMandelbrot model;
+    /** Initial point of a drag gesture used for zoom selection. */
     private Point dragStart;
+    /** Current endpoint of the drag gesture for zoom selection. */
     private Point dragEnd;
+    /** Colour mapping strategy applied when rendering the set. */
     private ColourMap colourMap = new BlackWhiteColourMap();
 
+    /**
+     * Creates a panel bound to the given model and registers as a listener.
+     *
+     * @param model source of pixel data to render
+     */
     public MandelbrotPanel(ModelMandelbrot model) {
         this.model = model;
         this.model.addListener(this);
@@ -20,10 +32,20 @@ public class MandelbrotPanel extends JPanel implements ModelListener {
         setPreferredSize(new Dimension(model.getWidth(), model.getHeight()));
     }
 
+    /**
+     * Records the start of a drag gesture for zoom selection.
+     *
+     * @param p starting point in panel coordinates
+     */
     public void setDragStart(Point p) {
         this.dragStart = p; 
     }
 
+    /**
+     * Records the current drag end position for zoom selection.
+     *
+     * @param p current drag end in panel coordinates
+     */
     public void setDragEnd(Point p) { 
         this.dragEnd = p;
     }
@@ -68,11 +90,19 @@ public class MandelbrotPanel extends JPanel implements ModelListener {
         repaint();
     }
 
+    /**
+     * Sets the current colour map used for rendering.
+     *
+     * @param colourMap map strategy to apply
+     */
     public void setColourMap(ColourMap colourMap) {
         this.colourMap = colourMap;
         repaint();
     }
 
+    /**
+     * @return the current colour map in use
+     */
     public ColourMap getColourMap() {
         return colourMap;
     }

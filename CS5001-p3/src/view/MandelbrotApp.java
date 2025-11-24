@@ -6,8 +6,16 @@ import controller.ControllerMandelbrot;
 import java.awt.BorderLayout;
 
 
+/**
+ * Entry point for the Mandelbrot viewer application.
+ */
 public class MandelbrotApp {
 
+    /**
+     * Launches the Swing UI.
+     *
+     * @param args ignored command line arguments
+     */
     public static void main(String[] args) {
 
         SwingUtilities.invokeLater(() -> {

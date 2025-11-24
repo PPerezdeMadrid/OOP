@@ -8,12 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
- * Tests for view helpers. 
+ * View unit tests for {@link BlueColourMap}.
  */
 public class ViewMandelbrotTest {
 
     /**
-     * Simple regression test for the blue colour map gradient.
+     * Ensures the blue colour map produces a gradient and labels itself correctly.
      */
     @Test
     public void blueColourMapProducesGradient() {
@@ -24,6 +24,18 @@ public class ViewMandelbrotTest {
 
         assertEquals("Blue", map.getName());
         assertNotEquals(nearZero, mid); // Gradient should change across iterations
+        assertNotEquals(Color.BLACK, nearZero); // Near-zero iterations should still show colour
         assertEquals(Color.BLACK, max); // Points at max iterations should be black
+    }
+
+    /**
+     * Verifies the colour map handles zero max iterations safely and returns black.
+     */
+    @Test
+    public void blueColourMapHandlesZeroMaxIterations() {
+        BlueColourMap map = new BlueColourMap();
+        // Guard against division by zero and confirm in-set colouring
+        assertEquals(Color.BLACK, map.map(0, 0));
+        assertEquals(Color.BLACK, map.map(10, 0));
     }
 }

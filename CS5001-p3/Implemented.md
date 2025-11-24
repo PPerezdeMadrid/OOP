@@ -78,8 +78,8 @@
 
 ### Good documentation
 
-* [ TODO ] Javadoc for main classes
-* [ TODO ] Enough comments in Model / Controller
+* [ DONE ] Javadoc for main classes
+* [ DONE ] Enough comments in Model / Controller
 
 ### Complete Report PDF
 
@@ -88,6 +88,3 @@
 * [ TODO ] Description of enhancements
 * [ TODO ] Screenshots
 * [ TODO ] Discussion of limitations
-
-
-

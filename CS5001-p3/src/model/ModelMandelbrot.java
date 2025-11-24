@@ -11,10 +11,15 @@ import java.util.List;
 import java.util.Properties;
 
 
+/**
+ * Core model holding Mandelbrot viewport parameters, data, and undo/redo history.
+ */
 public class ModelMandelbrot {
 
     private static final String DEFAULT_COLOR_MAP = "Black & White";
+    /** Minimum iterations allowed for rendering. */
     public static final int MIN_ITERATIONS = 10;
+    /** Maximum iterations allowed for rendering. */
     public static final int MAX_ITERATIONS = 5000;
 
     private double minReal;
@@ -83,42 +88,72 @@ public class ModelMandelbrot {
 
     // Getters
 
+    /**
+     * @return 2D iteration data for the current view
+     */
     public int[][] getData() {
         return data;
     }
 
+    /**
+     * @return width of the current render in pixels
+     */
     public int getWidth() {
         return width;
     }
 
+    /**
+     * @return height of the current render in pixels
+     */
     public int getHeight() {
         return height;
     }
 
+    /**
+     * @return minimum real coordinate for the view window
+     */
     public double getMinReal() {
         return minReal;
     }
 
+    /**
+     * @return maximum real coordinate for the view window
+     */
     public double getMaxReal() {
         return maxReal;
     }
 
+    /**
+     * @return minimum imaginary coordinate for the view window
+     */
     public double getMinImag() {
         return minImag;
     }
 
+    /**
+     * @return maximum imaginary coordinate for the view window
+     */
     public double getMaxImag() {
         return maxImag;
     }
 
+    /**
+     * @return maximum iterations configured
+     */
     public int getMaxIterations() {
         return maxIterations;
     }
 
+    /**
+     * @return bailout radius squared value
+     */
     public double getRadiusSquared() {
         return radiusSquared;
     }
 
+    /**
+     * @return name of the active colour map
+     */
     public String getColorMapName() {
         return colorMapName;
     }
@@ -126,6 +161,8 @@ public class ModelMandelbrot {
     /**
      * Approximate magnification relative to the first range.
      * Handy if the UI wants to display the zoom level.
+     *
+     * @return magnification factor relative to the initial view
      */
     public double getMagnification() {
         double initialWidth = MandelbrotCalculator.INITIAL_MAX_REAL - MandelbrotCalculator.INITIAL_MIN_REAL;
@@ -137,6 +174,8 @@ public class ModelMandelbrot {
 
     /**
      * Updates the max number of iterations and triggers a recalculation.
+     *
+     * @param maxIterations new maximum iteration count
      */
     public void setMaxIterations(int maxIterations) {
         validateIterations(maxIterations);
@@ -148,6 +187,11 @@ public class ModelMandelbrot {
 
     /**
      * Sets the complex plane rectangle used for rendering.
+     *
+     * @param minReal minimum real coordinate
+     * @param maxReal maximum real coordinate
+     * @param minImag minimum imaginary coordinate
+     * @param maxImag maximum imaginary coordinate
      */
     public void setViewWindow(double minReal, double maxReal,
                               double minImag, double maxImag) {
@@ -179,6 +223,9 @@ public class ModelMandelbrot {
      * Moves the current view window by the specified delta values.
      * Positive deltaReal moves the view to the right.
      * Positive deltaImag moves the view downward (complex plane).
+     *
+     * @param deltaReal real-axis shift to apply
+     * @param deltaImag imaginary-axis shift to apply
      */
     public void pan(double deltaReal, double deltaImag) {
         pushStateToUndo();
@@ -205,14 +252,23 @@ public class ModelMandelbrot {
         redoStack.clear();
     }
 
-     public boolean canUndo() {
+    /**
+     * @return whether an undo operation is available
+     */
+    public boolean canUndo() {
         return !undoStack.isEmpty();
     }
 
+    /**
+     * @return whether a redo operation is available
+     */
     public boolean canRedo() {
         return !redoStack.isEmpty();
     }
 
+    /**
+     * Reverts to the previous Mandelbrot state if available.
+     */
     public void undo() {
         if (!canUndo()) return;
 
@@ -234,6 +290,9 @@ public class ModelMandelbrot {
         recalculate();
     }
 
+    /**
+     * Reapplies a previously undone state if available.
+     */
     public void redo() {
         if (!canRedo()) return;
 
@@ -265,6 +324,9 @@ public class ModelMandelbrot {
 
     /**
      * Saves the current model parameters to a file.
+     *
+     * @param file destination file
+     * @throws IOException if writing fails
      */
     public void saveToFile(File file) throws IOException {
         Properties props = new Properties();
@@ -282,6 +344,9 @@ public class ModelMandelbrot {
 
     /**
      * Loads model parameters from a file and recalculates the set.
+     *
+     * @param file source file containing saved parameters
+     * @throws IOException if reading fails
      */
     public void loadFromFile(File file) throws IOException {
         Properties props = new Properties();
@@ -315,6 +380,11 @@ public class ModelMandelbrot {
         recalculate();
     }
 
+    /**
+     * Updates the active colour map name and notifies listeners.
+     *
+     * @param colorMapName name of the colour map to apply
+     */
     public void setColorMapName(String colorMapName) {
         this.colorMapName = normalizeColourMapName(colorMapName);
         notifyListeners();
@@ -371,10 +441,20 @@ public class ModelMandelbrot {
 
     // --- Observer pattern methods ---
 
+    /**
+     * Registers a listener for model updates.
+     *
+     * @param listener listener to add
+     */
     public void addListener(ModelListener listener) {
         listeners.add(listener);
     }
 
+    /**
+     * Removes a listener from update notifications.
+     *
+     * @param listener listener to remove
+     */
     public void removeListener(ModelListener listener) {
         listeners.remove(listener);
     }
