@@ -3,10 +3,8 @@
 
 */.DS_Store
 
-# JavaDoc
-CS5001-p3/src/doc
 
-CS5001-p3/Implemented.md
+*/Implemented.md
 
 # Log file
 *.log
