@@ -2,6 +2,7 @@
 *.class
 
 */.DS_Store
+**/.DS_Store
 
 # JavaDoc generated
 */CS5001-p3/src/doc
