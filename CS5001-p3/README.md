@@ -20,7 +20,6 @@ Features include zooming, panning, undo/redo history, adjustable iteration depth
    * [Model Tests](#model)
    * [Controller Tests](#controller)
    * [View Tests](#view)
-5. [Author](#author)
 
 
 ## Features
