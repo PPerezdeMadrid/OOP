@@ -72,12 +72,6 @@ Features include zooming, panning, undo/redo history, adjustable iteration depth
 
 
 ## Architecture (MVC)
-Aquí tienes una explicación breve, clara y adaptada al tono de tu README. Está pensada para ir **justo debajo del encabezado “Architecture (MVC)”**:
-
----
-
-## Architecture (MVC)
-
 MVC separates the application into three independent layers:
 
 * **Model:** Manages the data, state, and core logic of the Mandelbrot viewer.
