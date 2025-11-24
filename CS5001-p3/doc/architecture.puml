@@ -1,0 +1,60 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+package model {
+  class ModelMandelbrot {
+    +setViewWindow(minReal, maxReal, minImag, maxImag)
+    +setMaxIterations(maxIterations)
+    +pan(deltaReal, deltaImag)
+    +reset()
+    +saveToFile(file)
+    +loadFromFile(file)
+    +addListener(listener)
+  }
+  interface ModelListener {
+    +modelChanged()
+  }
+  class MandelbrotCalculator {
+    +calcMandelbrotSet(width, height, minReal, maxReal, minImag, maxImag, maxIterations, radiusSquared)
+  }
+  class MandelbrotState
+}
+
+package view {
+  interface ColourMap {
+    +map(iter, maxIter) : Color
+    +getName() : String
+  }
+  class BlackWhiteColourMap
+  class BlueColourMap
+  class ControlPanelMandelbrot
+  class MandelbrotPanel
+  class MandelbrotApp
+  class UIStyler
+}
+
+package controller {
+  class ControllerMandelbrot
+}
+
+ModelMandelbrot o--> MandelbrotCalculator : uses
+ModelMandelbrot *--> MandelbrotState : undo/redo history
+ModelMandelbrot --> ModelListener : notifies >
+MandelbrotPanel ..|> ModelListener
+MandelbrotPanel --> ModelMandelbrot : renders data from
+MandelbrotPanel --> ColourMap : applies palette
+ColourMap <|.. BlackWhiteColourMap
+ColourMap <|.. BlueColourMap
+
+ControllerMandelbrot --> ModelMandelbrot : updates state
+ControllerMandelbrot --> MandelbrotPanel : drives interactions
+ControllerMandelbrot --> ControlPanelMandelbrot : wires UI
+ControllerMandelbrot --> ColourMap : selects
+ControlPanelMandelbrot ..> UIStyler : styles components
+
+MandelbrotApp --> ModelMandelbrot
+MandelbrotApp --> MandelbrotPanel
+MandelbrotApp --> ControlPanelMandelbrot
+MandelbrotApp --> ControllerMandelbrot
+
+@enduml

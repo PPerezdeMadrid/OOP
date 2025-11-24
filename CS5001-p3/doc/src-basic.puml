@@ -1,0 +1,41 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+package model {
+  class ModelMandelbrot
+  interface ModelListener
+  class MandelbrotCalculator
+  class MandelbrotState
+}
+
+package view {
+  interface ColourMap
+  class BlackWhiteColourMap
+  class BlueColourMap
+  class MandelbrotPanel
+  class ControlPanelMandelbrot
+  class MandelbrotApp
+}
+
+package controller {
+  class ControllerMandelbrot
+}
+
+ModelMandelbrot o--> MandelbrotCalculator
+ModelMandelbrot *--> MandelbrotState
+ModelMandelbrot --> ModelListener
+MandelbrotPanel ..|> ModelListener
+MandelbrotPanel --> ModelMandelbrot
+MandelbrotPanel --> ColourMap
+ColourMap <|.. BlackWhiteColourMap
+ColourMap <|.. BlueColourMap
+ControllerMandelbrot --> ModelMandelbrot
+ControllerMandelbrot --> MandelbrotPanel
+ControllerMandelbrot --> ControlPanelMandelbrot
+ControllerMandelbrot --> ColourMap
+MandelbrotApp --> ModelMandelbrot
+MandelbrotApp --> MandelbrotPanel
+MandelbrotApp --> ControlPanelMandelbrot
+MandelbrotApp --> ControllerMandelbrot
+
+@enduml

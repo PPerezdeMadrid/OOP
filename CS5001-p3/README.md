@@ -70,6 +70,7 @@ Features include zooming, panning, undo/redo history, adjustable iteration depth
   Removes `bin/` and `doc/`.
 
 
+
 ## Architecture (MVC)
 Aquí tienes una explicación breve, clara y adaptada al tono de tu README. Está pensada para ir **justo debajo del encabezado “Architecture (MVC)”**:
 

@@ -1,0 +1,95 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam dpi 120
+
+package model {
+  class ModelMandelbrot {
+    -minReal : double
+    -maxReal : double
+    -minImag : double
+    -maxImag : double
+    -maxIterations : int
+    -undoStack : Deque<MandelbrotState>
+    -redoStack : Deque<MandelbrotState>
+    +setViewWindow(minReal, maxReal, minImag, maxImag)
+    +setMaxIterations(maxIterations)
+    +pan(deltaReal, deltaImag)
+    +reset()
+    +saveToFile(file)
+    +loadFromFile(file)
+    +addListener(listener)
+  }
+  interface ModelListener {
+    +modelChanged()
+  }
+  class MandelbrotCalculator {
+    +calcMandelbrotSet(width, height, minReal, maxReal, minImag, maxImag, maxIterations, radiusSquared)
+  }
+  class MandelbrotState {
+    -minReal : double
+    -maxReal : double
+    -minImag : double
+    -maxImag : double
+    -maxIterations : int
+  }
+}
+
+package view {
+  interface ColourMap {
+    +map(iter, maxIter) : Color
+    +getName() : String
+  }
+  class BlackWhiteColourMap
+  class BlueColourMap
+  class ControlPanelMandelbrot {
+    -iterationSpinner : JSpinner
+    -resetButton : JButton
+    -undoButton : JButton
+    -redoButton : JButton
+    -saveButton : JButton
+    -loadButton : JButton
+    -colourMapCombo : JComboBox<String>
+  }
+  class MandelbrotPanel {
+    -dragStart : Point
+    -dragEnd : Point
+    -colourMap : ColourMap
+  }
+  class MandelbrotApp
+  class UIStyler
+}
+
+package controller {
+  class ControllerMandelbrot {
+    -dragStart : Point
+    -dragEnd : Point
+    -isPanning : boolean
+    +mousePressed(e)
+    +mouseDragged(e)
+    +mouseReleased(e)
+    +actionPerformed(e)
+    +stateChanged(e)
+  }
+}
+
+ModelMandelbrot o--> MandelbrotCalculator : uses
+ModelMandelbrot *--> MandelbrotState : undo/redo history
+ModelMandelbrot --> ModelListener : notifies >
+MandelbrotPanel ..|> ModelListener
+MandelbrotPanel --> ModelMandelbrot : renders data from
+MandelbrotPanel --> ColourMap : applies palette
+ColourMap <|.. BlackWhiteColourMap
+ColourMap <|.. BlueColourMap
+
+ControllerMandelbrot --> ModelMandelbrot : updates state
+ControllerMandelbrot --> MandelbrotPanel : drives interactions
+ControllerMandelbrot --> ControlPanelMandelbrot : wires UI
+ControllerMandelbrot --> ColourMap : selects
+ControlPanelMandelbrot ..> UIStyler : styles components
+
+MandelbrotApp --> ModelMandelbrot
+MandelbrotApp --> MandelbrotPanel
+MandelbrotApp --> ControlPanelMandelbrot
+MandelbrotApp --> ControllerMandelbrot
+
+@enduml
