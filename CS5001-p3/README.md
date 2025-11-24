@@ -3,6 +3,22 @@
 An application for exploring the Mandelbrot set.
 Features include zooming, panning, undo/redo history, adjustable iteration depth, multiple colour maps, and saving/loading view settings.
 
+## Project Structure
+
+```
+.
+├── makefile              # Build, test, run, javadoc targets
+├── README.md             # Project overview and usage
+├── doc/                  # Generated docs and PlantUML diagrams
+├── src/
+│   ├── controller/       # ControllerMandelbrot (wires UI + model)
+│   ├── model/            # ModelMandelbrot, calculator, state, listeners
+│   ├── view/             # Swing UI, panels, colour maps, styling
+│   └── test/             # JUnit tests for model, controller, view
+└── JUnit/                # JUnit standalone jar (test runtime)
+```
+
+
 ## **Table of Contents**
 
 1. [Features](#features)
@@ -157,8 +173,13 @@ Checks:
 * `BlueColourMap` produces a smooth gradient
 * Safe handling when `maxIterations = 0`
 
+## UML Class Diagram
+
+The following diagram was automatically generated from the project’s source code using **UML Generator**.
+
+You can view the interactive version of the diagram on PlantUML using the link below:
+![UML](/doc/UML.svg)
 
 ## Author
 
 > Paloma Pérez de Madrid Laguna
-
